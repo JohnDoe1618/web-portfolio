@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        About us
     </div>
 </template>
 <script setup>
