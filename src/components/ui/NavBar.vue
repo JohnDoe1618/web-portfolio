@@ -1,0 +1,66 @@
+<template>
+    <div>
+        <Menubar :model="items" :style="navbarDisplayContent">
+            <template #start>
+                <div>
+                    <h2>
+                        Abstergo
+                    </h2>
+                </div>
+            </template>
+        </Menubar>
+    </div>
+</template>
+<script setup>
+import Menubar from 'primevue/menubar';
+import { reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+// Init base variables
+const router = useRouter();
+
+// Init items for menubar
+const items = ref([
+    {
+        separator: true
+    },
+    {
+        separator: true
+    },
+    {
+        separator: true
+    },
+    {
+        label: 'О нас',
+        command: () => switchOnView('about-us')
+    },
+    {
+        label: 'Услуги',
+        command: () => switchOnView('our-services')
+    },
+    {
+        label: 'Наш опыт',
+        command: () => switchOnView('our-experiance')
+    },
+    {
+        label: 'Контакты',
+        command: () => switchOnView('our-contacts')
+    },
+    {
+        label: 'Команда',
+        command: () => switchOnView('our-team')
+    },
+]);
+
+// Instates routes, feature for switching between views
+const switchOnView = (route) => router.push({ name: route })
+
+// styling
+const navbarDisplayContent = reactive({
+    display: "flex",
+    // alignItems: "center", 
+    // justifyContent: "center"
+});
+
+</script>
+<style scoped></style>
