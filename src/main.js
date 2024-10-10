@@ -12,8 +12,12 @@ import '/node_modules/primeflex/primeflex.css';
 import App from './App.vue'
 import router from './router'
 
+// Components
+import Button from 'primevue/button';
+
 const app = createApp(App)
 
+app.component('Button', Button);
 app.use(createPinia())
 app.use(router)
 app.use(PrimeVue, {

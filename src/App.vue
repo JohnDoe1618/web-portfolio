@@ -1,14 +1,59 @@
 <template>
   <NavBar></NavBar>
   <div class="app">
-    
-    <router-view></router-view>
+    <Transition>
+      <router-view></router-view>
+    </Transition>
   </div>
 </template>
 
 <script setup>
 import NavBar from '@/components/ui/NavBar.vue';
+import { onMounted } from 'vue';
+import { useBackLGradient } from './components/ui/Effects/background.linear.gradient';
 
+// Параметры для градиента
+const styleParams = {
+  angleDeg: '45deg',
+  colorHext1: '#ee7752',
+  colorHex2: '#e73c7e',
+  colorHex3: '#23a6d5',
+  colorHex4: '#23d5ab',
+  backSizePracent1: 400,
+  backSizePracent2: 400,
+  animName: 'gradient',
+};
+
+const { lGradientStyle } = useBackLGradient(styleParams);
+
+onMounted(() => {
+  const body = document.body;
+
+  // Устанавливаем стили для body
+  Object.assign(body.style, lGradientStyle);
+});
 </script>
 
-<style scoped></style>
+<style>
+html,
+body {
+  height: 100%;
+  /* Устанавливаем высоту для html и body на 100% */
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Transitions */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity .5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+/* Animations */
+
+</style>
