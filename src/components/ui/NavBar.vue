@@ -3,9 +3,14 @@
         <Menubar :model="items" :style="navbarDisplayContent">
             <template #start>
                 <div>
-                    <h2>
+                    <h2 class="p-0" style="font-weight: 700;">
                         Abstergo
                     </h2>
+                </div>
+            </template>
+            <template #item="{ item }">
+                <div class="p-2" :style="navbarItemStyle">
+                    {{ item.label }}
                 </div>
             </template>
         </Menubar>
@@ -58,9 +63,19 @@ const switchOnView = (route) => router.push({ name: route })
 // styling
 const navbarDisplayContent = reactive({
     display: "flex",
+    "background-color": 'rgba(255, 255, 255, 0.1)', 
+    color: 'azure',
     // alignItems: "center", 
     // justifyContent: "center"
 });
 
+const navbarItemStyle = reactive({
+    cursor: 'pointer', 
+    color: 'white',
+})
+
 </script>
-<style scoped></style>
+
+<style scoped>
+
+</style>
