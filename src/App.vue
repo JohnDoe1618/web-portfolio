@@ -54,6 +54,21 @@ body {
   opacity: 0;
 }
 
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+}
+
+::-webkit-scrollbar-thumb {
+  border-left: 0;
+  border-right: 0;
+  background-color: #93e9ff;
+}
+
 /* Animations */
 
 </style>
