@@ -48,10 +48,6 @@ const items = ref([
         command: () => switchOnView('our-experiance')
     },
     {
-        label: 'Контакты',
-        command: () => switchOnView('our-contacts')
-    },
-    {
         label: 'Команда',
         command: () => switchOnView('our-team')
     },
