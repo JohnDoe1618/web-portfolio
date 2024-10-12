@@ -36,13 +36,14 @@ import PrimaryButton from '@/components/ui/Buttons/PrimaryButton.vue';
     width: 1200px;
     height: 68%;
     border: 1px solid var(--base-border-color);
+    border-radius: var(--base-rounded);
 }
 .preview-block {
     position: absolute;
-    left: 6.5rem;
+    left: 7.5rem;
     width: 500px;
     height: 75vh !important;
-    border-radius: var(--base-border);
+    border-radius: var(--base-rounded);
     overflow: hidden;
     box-shadow: var(--base-shadow-1);
 }
