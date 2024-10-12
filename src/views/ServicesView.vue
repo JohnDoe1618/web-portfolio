@@ -1,11 +1,67 @@
 <template>
-    <Dialog v-model:visible="visibleOrderServiceDialog" modal header="Оформить заявку" :style="{ width: '25rem' }">
-        
-        <div class="flex justify-end gap-2">
-            <Button type="button" label="Cancel" severity="secondary" @click="visibleOrderServiceDialog = false"></Button>
-            <primary-button class="standart-hover-effect-2" :color-text-hex="'black'"
-            :color-hex="'black'" :outlined="true" :text="'Закрыть'" @click="visibleOrderServiceDialog = false"></primary-button>
+    <Dialog v-model:visible="visibleOrderServiceDialog" modal header="Оформление Услуги" :style="{ width: '45rem' }">
+
+        <div class="main_content">
+
+            <span class="text-surface-500 dark:text-surface-400 block mb-4" style="color: #79898a; text-align: center;">
+                Вы выбрали одну из наших услуг. Заполните
+                форму, для того чтобы известить нас о деталях услуги, а также
+                связаться с нами для дальнейшего сотрудничества.
+            </span>
+
+            <div class="form_service">
+                <span class="text-surface-500 dark:text-surface-400 block mb-3"
+                    style="color: #79898a; text-align: center; text-align: start;">
+                    Вы выбрали: <span class="choice_service_label">{{ selectedService }}</span>
+                </span>
+
+                <div class="gap-4 mb-2">
+                    <div style="display: flex; flex-direction: column;">
+                        <span class="error">{{ errors.username }}</span>
+                        <InputText v-model="inquiry.username" id="username" class="flex-auto" autocomplete="off"
+                            placeholder="Введите ваше полное имя" />
+                    </div>
+                </div>
+                <div class="gap-4 mb-2">
+                    <div style="display: flex; flex-direction: column;">
+                        <span class="error">{{ errors.email }}</span>
+                        <InputText v-model="inquiry.email" id="email" class="flex-auto" autocomplete="off"
+                            placeholder="Укажите ваш адрес электронной почты для связи." />
+                    </div>
+                </div>
+                <div class="gap-4 mb-2">
+                    <div style="display: flex; flex-direction: column;">
+                        <span class="error">{{ errors.budget }}</span>
+                        <InputText v-model="inquiry.budget" id="budget" class="flex-auto" autocomplete="off"
+                            placeholder="Укажите бюджет проекта" />
+                    </div>
+                </div>
+                <div class="gap-4 mb-2">
+                    <div style="display: flex; flex-direction: column;">
+                        <span class="error">{{ errors.purpose }}</span>
+                        <InputText v-model="inquiry.purpose" id="purpose" class="flex-auto" autocomplete="off"
+                            placeholder="Кратко укажите тему вашего обращения." />
+                    </div>
+                </div>
+
+                <div class="card flex justify-center">
+                    <IftaLabel>
+                        <span class="error">{{ errors.desc }}</span>
+                        <Textarea id="description" v-model="inquiry.desc" rows="8" cols="59" style="resize: none;"
+                            placeholder="Описание" />
+                        <label for="description">Описание</label>
+                    </IftaLabel>
+                </div>
+                <div class="flex gap-3" style="justify-content: end;">
+                    <primary-button class="standart-hover-effect-2" :color-text-hex="'black'" :color-hex="'black'"
+                        :outlined="true" :text="'Закрыть'" @click="visibleOrderServiceDialog = false"></primary-button>
+                    <primary-button class="standart-hover-effect-2" :color-text-hex="'black'" :color-hex="'#29cba9'"
+                        :outlined="true" :text="'Оформить'" @click="onMakeOrder()"></primary-button>
+                </div>
+            </div>
+
         </div>
+
     </Dialog>
 
     <div class="container">
@@ -86,7 +142,8 @@
 
                             <div class="action_bar">
                                 <primary-button class="standart-hover-effect-1" :color-text-hex="'#1f2b2b'"
-                                    :color-hex="'white'" :outlined="false" :text="'Оформить заявку'" @click="openOrderServiceDialog" style="cursor: pointer;"></primary-button>
+                                    :color-hex="'white'" :outlined="false" :text="'Оформить заявку'"
+                                    @click="openOrderServiceDialog(it)" style="cursor: pointer;"></primary-button>
 
                                 <primary-button class="standart-hover-effect-2" :color-text-hex="'#ffffff'"
                                     :color-hex="'#ffffff'" :outlined="true" :text="'Подолбнее'"></primary-button>
@@ -107,9 +164,11 @@ import InputGroup from 'primevue/inputgroup';
 import InputGroupAddon from 'primevue/inputgroupaddon';
 import InputText from 'primevue/inputtext';
 import PrimaryButton from '@/components/ui/Buttons/PrimaryButton.vue';
+import Textarea from 'primevue/textarea';
 
 import { useBlurBox } from '@/components/ui/Effects/blurred.box';
-import { computed, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
+import axios from 'axios';
 
 const { blurBoxStyle } = useBlurBox({ width: '400px', height: '300px' });
 
@@ -189,7 +248,14 @@ const serviceList = ref([
     },
 ])
 
+const selectedService = ref('');
+
 // Utility features
+
+function selectService(service) {
+    selectedService.value = service
+}
+
 function sliceText(text) {
     if (typeof text === 'string') {
         return text.trim().slice(0, 100) + '...';
@@ -220,8 +286,9 @@ function filterServiceItemsBySearchField(value) {
     });
 }
 
-function openOrderServiceDialog() {
-    console.log("open order service dialog")
+function openOrderServiceDialog(service) {
+    console.log("open order service dialog");
+    selectService(service?.label);
     visibleOrderServiceDialog.value = true;
 }
 
@@ -230,6 +297,100 @@ const filteredServices = computed(() => {
     return filterServiceItemsBySearchField(inputText.value);
 });
 
+// form inquiry / validation / http request
+
+const inquiry = reactive({
+    username: '',
+    email: '',
+    budget: '',
+    purpose: '',
+    desc: '',
+})
+
+const errors = reactive({
+    username: '',
+    email: '',
+    budget: '',
+    purpose: '',
+    desc: '',
+});
+
+function validateEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
+function validateInquiry() {
+    let isValid = true;
+
+    // Username validation
+    if (!inquiry.username) {
+        errors.username = 'Имя обязательно для заполнения.';
+        isValid = false;
+    } else {
+        errors.username = '';
+    }
+
+    // Email validation
+    if (!inquiry.email) {
+        errors.email = 'Email обязателен для заполнения.';
+        isValid = false;
+    } else if (!validateEmail(inquiry.email)) {
+        errors.email = 'Неверный формат email.';
+        isValid = false;
+    } else {
+        errors.email = '';
+    }
+
+    // Budget validation
+    if (!inquiry.budget) {
+        errors.budget = 'Бюджет обязателен для заполнения.';
+        isValid = false;
+    } else if (isNaN(inquiry.budget)) {
+        errors.budget = 'Бюджет должен быть числом.';
+        isValid = false;
+    } else {
+        errors.budget = '';
+    }
+
+    // Purpose validation
+    if (!inquiry.purpose) {
+        errors.purpose = 'Цель обращения обязательна для заполнения.';
+        isValid = false;
+    } else {
+        errors.purpose = '';
+    }
+
+    // Description validation
+    if (!inquiry.desc) {
+        errors.desc = 'Описание обязательно для заполнения.';
+        isValid = false;
+    } else {
+        errors.desc = '';
+    }
+
+    return isValid;
+}
+
+function onMakeOrder() {
+    if (validateInquiry()) {
+        console.log('Confirmed order', inquiry);
+        // Здесь будет сетевой запрос
+        // например, axios.post('/api/orders', inquiry)
+    } else {
+        console.log('Валидация не пройдена', errors);
+    }
+}
+
+// Запрос на модерацию\регистрацию услуги
+async function onRequestMakeOrder() {
+    try {
+        const response = await axios.post('/api/v1/orders', inquiry);
+        console.log('Order successfully created', response.data);
+    } catch (error) {
+        console.error('Error while creating order', error);
+    }
+}
 </script>
 
 <style scoped>
@@ -392,5 +553,37 @@ const filteredServices = computed(() => {
 .list-leave-to {
     opacity: 0;
     transform: translateX(30px);
+}
+
+
+
+/* Dialog style */
+
+.main_content {
+    width: 100%;
+    height: 100%;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_service {
+    width: 80%;
+    height: 100%;
+    padding: 22px;
+    color: #000000;
+    /* border: 1px solid #d3d3d3; */
+    border-radius: 4px;
+
+}
+
+.choice_service_label {
+    color: #29cba9;
+    font-weight: 700;
+}
+
+.error {
+    color: red;
 }
 </style>
