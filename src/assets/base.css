@@ -5,7 +5,7 @@
 :root {
     --base-border-color:  #e2e8f0;
     --router-layout-height: 93vh;
-    --base-border: 6px;
+    --base-rounded: 6px;
     --base-shadow-1:  rgba(0, 0, 0, 0.24) 0px 3px 8px;
     --base-shadow-2: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }

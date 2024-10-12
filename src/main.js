@@ -13,14 +13,16 @@ import App from './App.vue'
 import router from './router'
 
 // Components
-import Button from 'primevue/button';
-import Dialog from 'primevue/dialog';
+import primevueComponents from '@/components/ui/primevue';
 import DialogService from 'primevue/dialogservice';
 
 const app = createApp(App)
 
-app.component('Button', Button);
-app.component('Dialog', Dialog);
+// Регистрация компонентов PrimeVue
+primevueComponents.forEach((component) => {
+    app.component(component?.name, component);
+});
+
 
 app.use(DialogService)
 app.use(createPinia())
