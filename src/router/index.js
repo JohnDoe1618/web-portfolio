@@ -1,4 +1,3 @@
-import ContactsView from '@/views/ContactsView.vue'
 import ExperianceView from '@/views/ExperianceView.vue'
 import ServicesView from '@/views/ServicesView.vue'
 import TeamView from '@/views/TeamView.vue'
@@ -22,11 +21,6 @@ const router = createRouter({
       path: '/experiance',
       name: "our-experiance",
       component: ExperianceView
-    },
-    {
-      path: '/contacts',
-      name: "our-contacts",
-      component: ContactsView
     },
     {
       path: '/team',
