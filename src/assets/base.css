@@ -4,10 +4,20 @@
 /* semantic color variables for this project */
 :root {
     --base-border-color:  #e2e8f0;
+    --base-fg: white;
     --router-layout-height: 93vh;
     --base-rounded: 6px;
     --base-shadow-1:  rgba(0, 0, 0, 0.24) 0px 3px 8px;
     --base-shadow-2: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    --base-shadow-3: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    --font: "Play", sans-serif;
+    --text-light: rgba(255, 255, 255, 0.6);
+    
+    /* breadcrumbs */
+    --br-color: rgba(223, 223, 223, 0.7);
+
+    /* TEAMS > PREVIEW_BLOCK > SERVICES */
+    --teams-services-top-fg: #29cba9;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -45,4 +55,8 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.light {
+    color: var(--text-light);
 }
