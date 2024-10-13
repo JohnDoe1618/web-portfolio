@@ -17,7 +17,8 @@
     --br-color: rgba(223, 223, 223, 0.7);
 
     /* TEAMS > PREVIEW_BLOCK > SERVICES */
-    --teams-services-top-fg: #29cba9;
+    --teams-services-top-fg: #ffffff;
+    --teams-services-fg: rgba(255, 255, 255, 0.798);
 }
 
 @media (prefers-color-scheme: dark) {

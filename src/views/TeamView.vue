@@ -1,13 +1,8 @@
 <template>
     <div class="team-view">
         <section class="employee-info-block">
-            <transition name="slide-fade-prev">
-                <previewImageBlock v-if="s"/>
-            </transition>
-
-            <transition name="slide-fade-sum">
-                <previewSummaryBlock v-if="s"/>
-            </transition>
+            <previewImageBlock :id="previewId" :main-id="previewId"/>
+            <previewSummaryBlock :id="summaryId" :main-id="summaryId"/>
         </section>
     </div>
 </template>
@@ -16,47 +11,31 @@
 <script setup>
 import previewImageBlock from '@/components/teams/previewImageBlock.vue';
 import previewSummaryBlock from '@/components/teams/previewSummaryBlock.vue';
+import { useAnimTeamsStore } from '@/stores/teams/animStore';
 import { onMounted, ref } from 'vue';
 
-const s = ref(false)
+const previewId = ref('teams-preview-block');       //  айдишник блока с Картинкой члена команды. Нужен для анимации появления/скрытия 
+const summaryId = ref('teams-summary-block');       //  айдишник блока с Описанием члена команды. Нужен для анимации появления/скрытия 
 
+const { executeAllTeamsAnimation } = useAnimTeamsStore()
 onMounted(() => {
-    setTimeout(() => {
-        s.value = true
-    }, 400)
-})
+    // Провяление анимаций
+    executeAllTeamsAnimation([
+        { id: previewId.value, config: { delay: 300, duration: 0.4, scale: 1, opacity: 1, transform: { x: 0, y: 0 } } },
+        { id: summaryId.value, config: { delay: 300, duration: 0.4, scale: 1, opacity: 1, transform: { x: 0, y: 0 } } },
+    ]);
+
+    // // Ичезновение 
+    // setTimeout(() => {
+    //     executeAllTeamsAnimation([
+    //         { id: previewId.value, config: { delay: 0, duration: 0.4, scale: 0, opacity: 0, transform: { x: -350, y: 0 } } },
+    //         { id: summaryId.value, config: { delay: 0, duration: 0.4, scale: 0, opacity: 0, transform: { x: 350, y: 0 } } },
+    //     ]);
+    // }, 3400)
+});
 </script>
 
 <style scoped>
-/* Animation Preview Block*/
-.slide-fade-prev-enter-active {
-  transition: all 0.4s ease-out;
-}
-
-.slide-fade-prev-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-prev-enter-from,
-.slide-fade-prev-leave-to {
-  transform: translate(50px, 0px);
-  opacity: 0;
-}
-/* Animation Summary Block */
-.slide-fade-sum-enter-active {
-  transition: all 0.4s ease-out;
-}
-
-.slide-fade-sum-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-sum-enter-from,
-.slide-fade-sum-leave-to {
-  transform: translate(-50px, 0px);
-  opacity: 0;
-}
-
 .team-view {
     width: 100vw;
     height: calc(var(--router-layout-height) + 1vh);
@@ -76,5 +55,14 @@ onMounted(() => {
     border: 1px solid var(--base-border-color);
     border-radius: var(--base-rounded);
 }
-
+#teams-preview-block {
+    scale: 0.5;
+    opacity: 0;
+    transform: translate(-350px, 0px);
+}
+#teams-summary-block {
+    scale: 0.5;
+    opacity: 1;
+    transform: translate(350px, 0px);
+}
 </style>

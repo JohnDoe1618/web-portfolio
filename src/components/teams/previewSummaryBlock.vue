@@ -37,7 +37,9 @@
 
         <!-- Сервисы -->
         <h2 class="w-full mt-3 mb-4 light font-bold text-2xl">Мои услуги:</h2>
+
         <div class="summary-block__services mb-5">
+            <!-- Ячейка сервиса -->
             <div class="service-item px-3 py-2" v-for="service in services" :key="service.title">
                 <svg-icon 
                 class="service-item__icon" 
@@ -53,9 +55,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiRocketLaunchOutline, mdiCodeTags, mdiDatabaseOutline, mdiSecurity } from '@mdi/js';
+
+const props = defineProps({
+    mainId: {
+        type: String,
+        required: false,
+        default: null,
+    },
+});
 
 const tags = ref([
     { label: '22 года' },
@@ -119,10 +129,13 @@ const services = ref([
 
 /* БЛОК СЕРВИСОВ */
 .summary-block__services {
+    width: 100%;
     display: grid;
+    justify-content: center;
     grid-template-columns: 220px 220px;
     row-gap: 20px;
-    column-gap: 30px;
+    column-gap: 24px;
+    padding-left: 0.3rem;
 }
 .service-item {
     width: 220px;
@@ -132,9 +145,12 @@ const services = ref([
     flex-direction: column;
     font-family: var(--font);
     border-radius: var(--base-rounded);
-    background-color: white;
     box-shadow: var(--base-shadow-3);
     cursor: default;
+    background: rgb(231,60,126);
+    /* background: linear-gradient(135deg, rgba(231,60,126, .7) 33%, rgba(35,166,213,.7) 100%); */
+    background: linear-gradient(45deg, rgba(131,58,180,.5) 15%, rgba(35,166,213,.8) 45%, rgba(79, 208, 255, 0.7) 72%);
+    color: var(--teams-services-fg);
 }
 .service-item__icon {
     width: 25px !important;

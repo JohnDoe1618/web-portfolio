@@ -1,5 +1,6 @@
+<!-----------------------------------------------------------TEMPLATE----------------------------------------------------------------------------->
 <template>
-    <div class="preview-block">
+    <div id="teams-preview-block" class="preview-block">
         <div class="preview-block__fg">
             <div class="title-block mt-auto mr-auto mb-6 px-6 mx-4">
                 <h2 id="tm-pr-name">Эвери Владислав</h2>
@@ -7,7 +8,7 @@
                 <Button 
                 id="tm-pr-lnkbtn"
                 class="contact-btn " 
-                :label="lnkbtnTitle" 
+                :label="lnkBtnTitle" 
                 outlined 
                 severity="secondary" 
                 />
@@ -17,48 +18,62 @@
     </div>
 </template>
 
+<!-----------------------------------------------------------SCRIPTS----------------------------------------------------------------------------->
+
 <script setup>
 import gsap from 'gsap';
-import { onMounted, ref } from 'vue';
+import { ref, defineProps, watch } from 'vue';
+import { useAnimTeamsStore } from '@/stores/teams/animStore';
+// #######################################   COMPOSABLES   #######################################
+const animStore = useAnimTeamsStore();
 
-const lnkbtnTitle = ref('');
 
-function initTextAnimation(
-    input='', 
-    callback = (output='') => {}, 
-    config = { duration: 200 },
-) {
+// #######################################   PROPS   #######################################
+const props = defineProps({
+    mainId: {
+        type: String,
+        required: false,
+        default: null,
+    },
+});
+
+// #######################################   DATA   #######################################
+const lnkBtnTitle = ref('');
+
+
+
+// #######################################   METHODS   #######################################
+
+
+// Стартовая анимация вложенных элементов при начальной отрисовке компонента
+async function initInnerAnimation(duration=0.18, delay=0.4) {
     try {
-        if(!input) throw 'input required arg';
-        for (let i = 0; i < input.length; i++) {
-            const element = input.at(i);
-            setTimeout(() => {
-                callback(element)
-            }, i*config.duration);
-        }
-    } catch (err) {
-        throw err;
-    }
-}
-
-// Стартовая анимация вложенных элемнтом при монтировании компонента
-async function initAnimation() {
-    try {
+        let dur = duration;
+        let del = delay;
         const tl = gsap.timeline();
-        let dur = 0.18;
-        let del = 0.4;
         await tl.to('#tm-pr-name', { duration: dur, delay: del, opacity: 1, transform: 'translateX(0px)' });
         await tl.to('#tm-pr-jobtitle', { duration: dur, opacity: 1, transform: 'translateX(0px)' });
         await tl.to('#tm-pr-lnkbtn', { duration: dur, opacity: 1, transform: 'translateX(0px)' });
-        initTextAnimation('Связаться', (output) => lnkbtnTitle.value += output, { duration: 80 });
+        animStore.initTextAnimation('Связаться', (output) => lnkBtnTitle.value += output, { duration: 80 });
     } catch (err) {
         throw err;
     }
 }
 
-onMounted(initAnimation);
+// #######################################   WATCH   #######################################
+// Внутренние анимации выпоняются после того как заверится анимация появления главного компонента
+watch(() => animStore.animationExecuteState, (newValue) => {
+    if(newValue === false) {
+        initInnerAnimation(0.18, 0)
+    }
+});
+
+// #######################################   HOOKS   #######################################
+// onMounted(initAnimation);
 
 </script>
+
+<!----------------------------------------------------------STYLES------------------------------------------------------------------------>
 
 <style scoped>
 /* ДЛЯ АНИМАЦИИ ЭЛЕМЕНТОВ */
