@@ -8,6 +8,8 @@
     --base-rounded: 6px;
     --base-shadow-1:  rgba(0, 0, 0, 0.24) 0px 3px 8px;
     --base-shadow-2: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    --font: "Play", sans-serif;
+    --text-light: rgba(255, 255, 255, 0.786);
 }
 
 @media (prefers-color-scheme: dark) {
