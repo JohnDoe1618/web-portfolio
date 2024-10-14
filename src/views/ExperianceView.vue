@@ -1,8 +1,388 @@
 <template>
-    <div>
-        Experiance
+    <div class="main_content">
+        <!-- TITLE -->
+        <div class="title">
+            Наш опыт разработки
+        </div>
+
+        <!-- FILTER GROUP -->
+        <div class="filter_group">
+            <primary-button class="filter_button_item" v-for="it in buttonsFilterGroupList" :key="it.id"
+                :color-text-hex="it.colorText" :color-hex="it.colorHex" :outlined="it.outlined" :text="it.text"
+                @click="selectFilterGroupItem(it)"></primary-button>
+        </div>
+
+        <!-- DATAVIEW COMPONENT -->
+        <div class="dataview grid">
+            <div v-for="it in projects" :key="it.id" class="col-12 lg:col-3 project_item"
+                :style="{ ...{ padding: '10px', margin: '10px', display: 'flex', border: '1px solid #cacaca' } }">
+
+                <Carousel :show-indicators="false" :autoplayInterval="5_000" :value="it.images" :numVisible="1"
+                    :numScroll="1" orientation="horizontal" verticalViewPortHeight="330px"
+                    containerClass="flex items-center">
+                    <template #item="{ data }">
+
+                        <img :src="data" class="project_image">
+
+                    </template>
+
+                </Carousel>
+
+
+                <div class="project_item-content">
+
+                    <span class="content_title">
+                        {{ it.name }}
+                    </span>
+
+                    <div class="content_detail_info-difficulty">
+                        <span>
+                            Сложность: <span style="font-weight: 700;"
+                                :style="{ color: getDifficultyColor(it.difficulty) }">{{
+                                it.difficulty }}</span>
+                        </span>
+                    </div>
+
+                    <div class="content_detail_info-tags">
+                        <span style="font-weight: 700;">Теги:</span>
+                    </div>
+
+                    <div class="content_detail_info-tags_list flex flex-wrap justify-center gap-2 mt-2">
+
+                        <Tag v-for="tag in it.tags" :key="tag.id" :value="tag.label"></Tag>
+
+                    </div>
+
+                    <div class="content_detail_info-button">
+                        <primary-button class="view_more_project-button"
+                            :color-text-hex="'black'" :color-hex="'black'" :outlined="true"
+                            :text="'Подробнее'"></primary-button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </template>
 <script setup>
+import PrimaryButton from '@/components/ui/Buttons/PrimaryButton.vue';
+import Carousel from 'primevue/carousel';
+import Tag from 'primevue/tag';
+
+import { ref } from 'vue';
+
+// buttons list values
+const buttonsFilterGroupList = ref([
+    {
+        id: 0,
+        colorText: 'black',
+        colorHex: '#fff',
+        outlined: false,
+        text: 'Все',
+    },
+    {
+        id: 1,
+        colorText: 'white',
+        colorHex: 'white',
+        outlined: true,
+        text: 'Прототипирование',
+    },
+    {
+        id: 2,
+        colorText: 'white',
+        colorHex: 'white',
+        outlined: true,
+        text: 'Разработка',
+    },
+    {
+        id: 3,
+        colorText: 'white',
+        colorHex: 'white',
+        outlined: true,
+        text: 'Дизайн',
+    },
+    {
+        id: 4,
+        colorText: 'white',
+        colorHex: 'white',
+        outlined: true,
+        text: 'Архитектура и проектирование',
+    },
+    {
+        id: 5,
+        colorText: 'white',
+        colorHex: 'white',
+        outlined: true,
+        text: 'Плагины',
+    },
+    {
+        id: 6,
+        colorText: 'white',
+        colorHex: 'white',
+        outlined: true,
+        text: 'Парсеры',
+    },
+    {
+        id: 7,
+        colorText: 'white',
+        colorHex: 'white',
+        outlined: true,
+        text: 'Боты',
+    },
+])
+
+// filter group features
+const selectedFilterGroupItem = ref(null);
+
+function selectFilterGroupItem(item) {
+    selectedFilterGroupItem.value = item;
+}
+
+// Dataview features
+const projects = ref(
+    [
+        {
+            id: 0,
+            difficulty: 'Низкая',
+            name: 'Antarctica View',
+            images: [
+                'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/project-images%2FAntarctica%20Website.jpg?alt=media&token=a60a9e24-157a-4703-a9f8-8d74e3e1f595',
+                'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/project-images%2FAntarctica%20Website.jpg?alt=media&token=a60a9e24-157a-4703-a9f8-8d74e3e1f595',
+                'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/project-images%2FAntarctica%20Website.jpg?alt=media&token=a60a9e24-157a-4703-a9f8-8d74e3e1f595',
+            ],
+            price: 60_000,
+            category: 'design',
+            tags: [
+                {
+                    id: 0,
+                    label: 'Дизайн',
+                },
+                {
+                    id: 1,
+                    label: 'Сайт',
+                },
+            ],
+            status: 'ready',
+            rating: 5
+        },
+        {
+            id: 1,
+            difficulty: 'Низкая',
+            name: 'Antarctica View',
+            images: [
+                'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/project-images%2FAntarctica%20Website.jpg?alt=media&token=a60a9e24-157a-4703-a9f8-8d74e3e1f595',
+                'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/project-images%2FAntarctica%20Website.jpg?alt=media&token=a60a9e24-157a-4703-a9f8-8d74e3e1f595',
+            ],
+            price: 20_000,
+            category: 'design',
+            tags: [
+                {
+                    id: 0,
+                    label: 'Разработка',
+                },
+                {
+                    id: 1,
+                    label: 'Моб приложение',
+                },
+            ],
+            status: 'ready',
+            rating: 5
+        },
+        {
+            id: 2,
+            difficulty: 'Средняя',
+            name: 'Antarctica View',
+            images: [
+                'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/project-images%2FAntarctica%20Website.jpg?alt=media&token=a60a9e24-157a-4703-a9f8-8d74e3e1f595'
+            ],
+            price: 60_000,
+            category: 'design',
+            tags: [
+                {
+                    id: 0,
+                    label: 'Дизайн',
+                },
+                {
+                    id: 1,
+                    label: 'Сайт',
+                },
+            ],
+            status: 'process',
+            rating: 5
+        },
+        {
+            id: 3,
+            difficulty: 'Средняя',
+            name: 'Antarctica View',
+            images: [
+                'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/project-images%2FAntarctica%20Website.jpg?alt=media&token=a60a9e24-157a-4703-a9f8-8d74e3e1f595'
+            ],
+            price: 60_000,
+            category: 'design',
+            tags: [
+                {
+                    id: 0,
+                    label: 'Дизайн',
+                },
+                {
+                    id: 1,
+                    label: 'Сайт',
+                },
+            ],
+            status: 'process',
+            rating: 5
+        },
+        {
+            id: 4,
+            difficulty: 'Средняя',
+            name: 'Antarctica View',
+            images: [
+                'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/project-images%2FAntarctica%20Website.jpg?alt=media&token=a60a9e24-157a-4703-a9f8-8d74e3e1f595'
+            ],
+            price: 60_000,
+            category: 'design',
+            tags: [
+                {
+                    id: 0,
+                    label: 'Дизайн',
+                },
+                {
+                    id: 1,
+                    label: 'Сайт',
+                },
+            ],
+            status: 'process',
+            rating: 5
+        },
+    ]
+);
+
+const getStatus = (project) => {
+    switch (project.status) {
+        case 'ready':
+            return 'success';
+        case 'process':
+            return 'warn';
+        case 'canceled':
+            return 'danger';
+        default:
+            return null;
+    }
+}
+
+const getDifficultyColor = (difficulty) => {
+    switch (difficulty) {
+        case 'Низкая':
+            return 'green'
+        case 'Средняя':
+            return 'orange';
+        case 'Высокая':
+            return 'red';
+        default:
+            break;
+    }
+}
 
 </script>
+
+<style scoped>
+.main_content {
+    width: 100%;
+    height: 93vh;
+    padding: 50px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+.filter_group {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+}
+
+.filter_button_item {
+    margin-left: 20px;
+}
+
+.filter_button_item:first-child {
+    margin: 0;
+}
+
+/* DATAVIEW COMPONENT styles */
+
+.dataview {
+    width: 100%;
+    height: 100%;
+    margin-top: 50px;
+    display: flex;
+    /* justify-content: center; */
+}
+
+.project_item {
+    width: 420px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.project_image {
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+}
+
+.project_item-content {
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+}
+
+.content_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 17px;
+    color: #565e63;
+}
+
+.content_detail_info-difficulty {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #565e63;
+}
+
+.content_detail_info-tags {
+    margin-top: 10px;
+    color: #565e63;
+}
+
+.content_detail_info-button {
+    margin-top: 20px;
+}
+
+/* .card {
+    overflow-x: hidden;
+    background: white;
+    border: 1px solid #cfcfcf;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+} */
+</style>

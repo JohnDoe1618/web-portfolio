@@ -671,9 +671,6 @@ function openMoreServiceDialog(service) {
     height: 100%;
 }
 
-.service_item {}
-
-
 /* main container - grid customization */
 .top_block {
     width: 100%;
