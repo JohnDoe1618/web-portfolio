@@ -1,4 +1,39 @@
 <template>
+
+    <!-- DIALOG -->
+    <Dialog class="p-2" v-model:visible="visibleMoreCaseDialog" modal
+        :header="`Подронее о проекте: ${selectedProject?.name}`" :style="{ width: '55rem' }">
+        <div class="mcd_main_content">
+
+            <!-- IMAGES SECTION -->
+            <div v-if="selectedProject != {} || selectedProject != null" class="mcd_image_section">
+                <img v-for="image in selectedProject?.images" :src="image" class="mcd_image">
+            </div>
+
+
+            <!-- INFO SECTION -->
+            <div class="mcd_info_section">
+
+                <!-- project objective -->
+                <span class="ctc">Задача проекта:</span>
+                <h6 class="cdc">{{ selectedProject?.detailInfo.objective }}</h6>
+
+                <span class="mt-3 ctc">Реализация:</span>
+                <h6 class="cdc">{{ selectedProject?.detailInfo.realization }}</h6>
+
+                <span class="mt-3 ctc">Используемые технологии:</span>
+                <div class="flex flex-wrap justify-center gap-2 mt-2">
+                    <Tag v-for="tag in selectedProject?.detailInfo.technologyUsed" :key="tag.id" :value="tag.label"></Tag>
+                </div>
+
+                <span class="mt-3 ctc">Время реализации:</span>
+                <h6 class="cdc"> ~ {{ selectedProject?.detailInfo.timeRealization }}</h6>
+
+            </div>
+        </div>
+    </Dialog>
+
+
     <div class="main_content">
         <!-- TITLE -->
         <div class="title">
@@ -39,7 +74,7 @@
                         <span>
                             Сложность: <span style="font-weight: 700;"
                                 :style="{ color: getDifficultyColor(it.difficulty) }">{{
-                                it.difficulty }}</span>
+                                    it.difficulty }}</span>
                         </span>
                     </div>
 
@@ -54,9 +89,8 @@
                     </div>
 
                     <div class="content_detail_info-button">
-                        <primary-button class="view_more_project-button"
-                            :color-text-hex="'black'" :color-hex="'black'" :outlined="true"
-                            :text="'Подробнее'"></primary-button>
+                        <primary-button class="view_more_project-button" :color-text-hex="'black'" :color-hex="'black'"
+                            :outlined="true" :text="'Подробнее'" @click="onSelectProject(it)"></primary-button>
                     </div>
 
                 </div>
@@ -70,8 +104,11 @@
 import PrimaryButton from '@/components/ui/Buttons/PrimaryButton.vue';
 import Carousel from 'primevue/carousel';
 import Tag from 'primevue/tag';
+import Dialog from 'primevue/dialog';
+import Rating from 'primevue/rating';
 
-import { ref } from 'vue';
+
+import { reactive, ref } from 'vue';
 
 // buttons list values
 const buttonsFilterGroupList = ref([
@@ -141,7 +178,7 @@ function selectFilterGroupItem(item) {
 }
 
 // Dataview features
-const projects = ref(
+const projects = reactive(
     [
         {
             id: 0,
@@ -165,7 +202,34 @@ const projects = ref(
                 },
             ],
             status: 'ready',
-            rating: 5
+            rating: 5,
+            detailInfo: {
+                objective: 'Создать современное веб-приложение для управления проектами, которое будет включать функционал для отслеживания задач, взаимодействия команды и отчетности',
+                realization: 'Мы разработали удобный интерфейс, который позволяет пользователям легко создавать и управлять задачами. Используя Vue и Nuxt, мы обеспечили быструю и отзывчивую работу приложения. Серверная часть была реализована на Node.js с использованием TypeScript для повышения надежности кода. Мы интегрировали API для взаимодействия с внешними сервисами и реализовали систему аутентификации пользователей. Работая в команде, мы провели несколько итераций по сбору обратной связи и доработке функционала, что позволило достичь высокой степени удовлетворенности клиента',
+                timeRealization: "3 месяца",
+                technologyUsed: [
+                    {
+                        id: 0,
+                        label: 'Vue'
+                    },
+                    {
+                        id: 1,
+                        label: 'Nuxt'
+                    },
+                    {
+                        id: 2,
+                        label: 'Node.js'
+                    },
+                    {
+                        id: 3,
+                        label: 'TypeScript'
+                    },
+                    {
+                        id: 4,
+                        label: 'JavaScript'
+                    }
+                ],
+            }
         },
         {
             id: 1,
@@ -188,7 +252,34 @@ const projects = ref(
                 },
             ],
             status: 'ready',
-            rating: 5
+            rating: 5,
+            detailInfo: {
+                objective: 'Создать современное веб-приложение для управления проектами, которое будет включать функционал для отслеживания задач, взаимодействия команды и отчетности',
+                realization: 'Мы разработали удобный интерфейс, который позволяет пользователям легко создавать и управлять задачами. Используя Vue и Nuxt, мы обеспечили быструю и отзывчивую работу приложения. Серверная часть была реализована на Node.js с использованием TypeScript для повышения надежности кода. Мы интегрировали API для взаимодействия с внешними сервисами и реализовали систему аутентификации пользователей. Работая в команде, мы провели несколько итераций по сбору обратной связи и доработке функционала, что позволило достичь высокой степени удовлетворенности клиента',
+                timeRealization: "3 месяца",
+                technologyUsed: [
+                    {
+                        id: 0,
+                        label: 'Vue'
+                    },
+                    {
+                        id: 1,
+                        label: 'Nuxt'
+                    },
+                    {
+                        id: 2,
+                        label: 'Node.js'
+                    },
+                    {
+                        id: 3,
+                        label: 'TypeScript'
+                    },
+                    {
+                        id: 4,
+                        label: 'JavaScript'
+                    }
+                ],
+            }
         },
         {
             id: 2,
@@ -210,7 +301,34 @@ const projects = ref(
                 },
             ],
             status: 'process',
-            rating: 5
+            rating: 5,
+            detailInfo: {
+                objective: 'Создать современное веб-приложение для управления проектами, которое будет включать функционал для отслеживания задач, взаимодействия команды и отчетности',
+                realization: 'Мы разработали удобный интерфейс, который позволяет пользователям легко создавать и управлять задачами. Используя Vue и Nuxt, мы обеспечили быструю и отзывчивую работу приложения. Серверная часть была реализована на Node.js с использованием TypeScript для повышения надежности кода. Мы интегрировали API для взаимодействия с внешними сервисами и реализовали систему аутентификации пользователей. Работая в команде, мы провели несколько итераций по сбору обратной связи и доработке функционала, что позволило достичь высокой степени удовлетворенности клиента',
+                timeRealization: "3 месяца",
+                technologyUsed: [
+                    {
+                        id: 0,
+                        label: 'Vue'
+                    },
+                    {
+                        id: 1,
+                        label: 'Nuxt'
+                    },
+                    {
+                        id: 2,
+                        label: 'Node.js'
+                    },
+                    {
+                        id: 3,
+                        label: 'TypeScript'
+                    },
+                    {
+                        id: 4,
+                        label: 'JavaScript'
+                    }
+                ],
+            }
         },
         {
             id: 3,
@@ -232,7 +350,34 @@ const projects = ref(
                 },
             ],
             status: 'process',
-            rating: 5
+            rating: 5,
+            detailInfo: {
+                objective: 'Создать современное веб-приложение для управления проектами, которое будет включать функционал для отслеживания задач, взаимодействия команды и отчетности',
+                realization: 'Мы разработали удобный интерфейс, который позволяет пользователям легко создавать и управлять задачами. Используя Vue и Nuxt, мы обеспечили быструю и отзывчивую работу приложения. Серверная часть была реализована на Node.js с использованием TypeScript для повышения надежности кода. Мы интегрировали API для взаимодействия с внешними сервисами и реализовали систему аутентификации пользователей. Работая в команде, мы провели несколько итераций по сбору обратной связи и доработке функционала, что позволило достичь высокой степени удовлетворенности клиента',
+                timeRealization: "3 месяца",
+                technologyUsed: [
+                    {
+                        id: 0,
+                        label: 'Vue'
+                    },
+                    {
+                        id: 1,
+                        label: 'Nuxt'
+                    },
+                    {
+                        id: 2,
+                        label: 'Node.js'
+                    },
+                    {
+                        id: 3,
+                        label: 'TypeScript'
+                    },
+                    {
+                        id: 4,
+                        label: 'JavaScript'
+                    }
+                ],
+            }
         },
         {
             id: 4,
@@ -254,7 +399,34 @@ const projects = ref(
                 },
             ],
             status: 'process',
-            rating: 5
+            rating: 5,
+            detailInfo: {
+                objective: 'Создать современное веб-приложение для управления проектами, которое будет включать функционал для отслеживания задач, взаимодействия команды и отчетности',
+                realization: 'Мы разработали удобный интерфейс, который позволяет пользователям легко создавать и управлять задачами. Используя Vue и Nuxt, мы обеспечили быструю и отзывчивую работу приложения. Серверная часть была реализована на Node.js с использованием TypeScript для повышения надежности кода. Мы интегрировали API для взаимодействия с внешними сервисами и реализовали систему аутентификации пользователей. Работая в команде, мы провели несколько итераций по сбору обратной связи и доработке функционала, что позволило достичь высокой степени удовлетворенности клиента',
+                timeRealization: "3 месяца",
+                technologyUsed: [
+                    {
+                        id: 0,
+                        label: 'Vue'
+                    },
+                    {
+                        id: 1,
+                        label: 'Nuxt'
+                    },
+                    {
+                        id: 2,
+                        label: 'Node.js'
+                    },
+                    {
+                        id: 3,
+                        label: 'TypeScript'
+                    },
+                    {
+                        id: 4,
+                        label: 'JavaScript'
+                    }
+                ],
+            }
         },
     ]
 );
@@ -284,6 +456,18 @@ const getDifficultyColor = (difficulty) => {
             break;
     }
 }
+
+// Dialog: More Case features
+
+const visibleMoreCaseDialog = ref(false);
+// Выбранные кейс(Когда нажали на "Подробнее")
+const selectedProject = ref(null);
+
+function onSelectProject(project) {
+    visibleMoreCaseDialog.value = true;
+    selectedProject.value = project
+}
+
 
 </script>
 
@@ -385,4 +569,48 @@ const getDifficultyColor = (difficulty) => {
     border-radius: 10px;
     margin-bottom: 1rem;
 } */
+
+/* MORE CASE DIALOG styles */
+
+.mcd_main_content {
+    width: 100%;
+    height: 500px;
+    padding: 12px;
+    display: flex;
+    overflow: auto;
+}
+
+.mcd_image_section {
+    flex: 0 0 40%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mcd_image {
+    width: 100%;
+    height: 180px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.mcd_info_section {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Общий класс для title */
+/* .common_title_class */
+.ctc {
+    font-weight: 700;
+    color: #565e63;
+}
+
+/* Общий класс для описаний desc */
+/* .common_desc_class */
+.cdc {
+    font-size: 14px;
+}
 </style>
