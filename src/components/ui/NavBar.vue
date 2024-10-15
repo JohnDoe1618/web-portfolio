@@ -44,7 +44,7 @@ const items = ref([
         command: () => switchOnView('our-services')
     },
     {
-        label: 'Наш опыт',
+        label: 'Кейсы',
         command: () => switchOnView('our-experiance')
     },
     {
