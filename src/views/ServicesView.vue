@@ -230,7 +230,7 @@
             <div class="grid_items">
 
                 <div class="grid">
-                    <div class="col-12 md:col-6 lg:col-4 service_item blurred-box" v-for="it in filteredServices"
+                    <div class="col-12 md:col-6 lg:col-4 service_item blurred-box" v-for="it in filteredServicesComputed"
                         :key="it.id"
                         :style="{ ...blurBoxStyle, ...{ padding: '10px', margin: '10px', display: 'flex', border: '1px solid #cacaca' } }">
                         <div class="text-center p-0 border-round-sm bg-primary font-bold">
@@ -305,15 +305,14 @@ import Card from 'primevue/card';
 import { useBlurBox } from '@/components/ui/Effects/blurred.box';
 import { computed, reactive, ref } from 'vue';
 import axios from 'axios';
-
 const { blurBoxStyle } = useBlurBox({ width: '400px', height: '300px' });
 
-const selectedFilterGroupItem = ref({});
-
-// visible reactive vars
-const visibleOrderServiceDialog = ref(false);
 
 // arrays, maps reactive vars
+const visibleOrderServiceDialog = ref(false);
+const selectedFilterGroupItem = ref({});
+const selectedService = ref('');
+const inputText = ref('');
 const filterGroupItems = ref([
     {
         id: 0,
@@ -341,14 +340,6 @@ const filterGroupItems = ref([
         code: "plugs"
     },
 ])
-
-// Input features
-const inputText = ref('');
-
-const cleanInputText = () => inputText.value = '';
-
-
-// Grid items features
 const serviceList = ref([
     {
         id: 0,
@@ -356,7 +347,7 @@ const serviceList = ref([
         icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/mobile_phone_14388.png?alt=media&token=f41ccd8c-b193-46e8-84f7-98ac2af45c7b',
         endProjectsCount: 4,
         desc: "Мобильные приложения, десктопные и веб-приложения, серверные решения и многое другое",
-        category: "mob",
+        category: "mobile",
     },
     {
         id: 1,
@@ -364,7 +355,7 @@ const serviceList = ref([
         icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/mobile_phone_14388.png?alt=media&token=f41ccd8c-b193-46e8-84f7-98ac2af45c7b',
         endProjectsCount: 6,
         desc: "Мобильные приложения, десктопные и веб-приложения, серверные решения и многое другое",
-        category: "mob",
+        category: "desktop",
     },
     {
         id: 2,
@@ -372,7 +363,7 @@ const serviceList = ref([
         icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/mobile_phone_14388.png?alt=media&token=f41ccd8c-b193-46e8-84f7-98ac2af45c7b',
         endProjectsCount: 2,
         desc: "Мобильные приложения, десктопные и веб-приложения, серверные решения и многое другое",
-        category: "mob",
+        category: "web",
     },
     {
         id: 3,
@@ -380,14 +371,14 @@ const serviceList = ref([
         icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/mobile_phone_14388.png?alt=media&token=f41ccd8c-b193-46e8-84f7-98ac2af45c7b',
         endProjectsCount: 2,
         desc: "Мобильные приложения, десктопные и веб-приложения, серверные решения и многое другое",
-        category: "mob",
+        category: "server",
     },
 ])
 
-const selectedService = ref('');
+// Input features
+const cleanInputText = () => inputText.value = '';
 
 // Utility features
-
 function selectService(service) {
     selectedService.value = service
 }
@@ -400,26 +391,35 @@ function sliceText(text) {
     }
 }
 
+// < Filtered features >
 function selectFilterGroupItem(it) {
+    if(selectedFilterGroupItem?.value?.id === it.id) {
+        selectedFilterGroupItem.value = {id: -1};
+        return;
+    }
     selectedFilterGroupItem.value = it;
-    filterServiceListByFilterGroup();
 }
 
-function filterServiceListByFilterGroup() {
-    console.info('Filtered service items');
-}
+// Фильтрация по категории и по названию
+function filterServiceItems(value) {
+    let filteredServicesList = serviceList.value;
 
-function filterServiceItemsBySearchField(value) {
-    if (!value) {
-        // Если значение пустое, возвращаем весь список услуг
-        return serviceList.value;
+    // Фильтрация по названию
+    if (value) {
+        const searchTerm = value.toLowerCase();
+        filteredServicesList = filteredServicesList.filter(service =>
+            service.label.toLowerCase().includes(searchTerm)
+        );
     }
 
-    const searchTerm = value.toLowerCase(); // Приводим ввод к нижнему регистру
+    // Фильтрация по категории
+    if (selectedFilterGroupItem.value.code) {
+        filteredServicesList = filteredServicesList.filter(service =>
+            service.category === selectedFilterGroupItem.value.code
+        );
+    }
 
-    return serviceList.value.filter(service => {
-        return service.label.toLowerCase().includes(searchTerm); // Проверяем, содержится ли поисковый термин в названии услуги
-    });
+    return filteredServicesList;
 }
 
 function openOrderServiceDialog(service) {
@@ -428,13 +428,7 @@ function openOrderServiceDialog(service) {
     visibleOrderServiceDialog.value = true;
 }
 
-// Computed properties
-const filteredServices = computed(() => {
-    return filterServiceItemsBySearchField(inputText.value);
-});
-
 // form inquiry / validation / http request
-
 const inquiry = reactive({
     username: '',
     email: '',
@@ -531,7 +525,6 @@ async function onRequestMakeOrder() {
 /** 
  * More Dialog features
  */
-
 const visibleMoreService = ref(false);
 const serviceInfo = reactive({
     imageSrc: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/6ebfde4e-42b0-45e5-af28-3f6e8ba9b212.jpeg?alt=media&token=8e916660-f863-4aba-ba7a-7e252deaa62a',
@@ -574,10 +567,14 @@ const serviceInfo = reactive({
         { title: 'Что делать если 3', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '2' }
     ],
 })
-
 function openMoreServiceDialog(service) {
     visibleMoreService.value = true;
 }
+
+// computed
+const filteredServicesComputed = computed(() => {
+    return filterServiceItems(inputText.value);
+});
 
 </script>
 
@@ -907,5 +904,4 @@ function openMoreServiceDialog(service) {
     margin-top: 10px;
     margin-bottom: 20px;
 }
-
 </style>

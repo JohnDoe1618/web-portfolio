@@ -23,7 +23,8 @@
 
                 <span class="mt-3 ctc">Используемые технологии:</span>
                 <div class="flex flex-wrap justify-center gap-2 mt-2">
-                    <Tag v-for="tag in selectedProject?.detailInfo.technologyUsed" :key="tag.id" :value="tag.label"></Tag>
+                    <Tag v-for="tag in selectedProject?.detailInfo.technologyUsed" :key="tag.id" :value="tag.label">
+                    </Tag>
                 </div>
 
                 <span class="mt-3 ctc">Время реализации:</span>
@@ -41,15 +42,18 @@
         </div>
 
         <!-- FILTER GROUP -->
-        <div class="filter_group">
+        <div class="filter_group mb-5">
             <primary-button class="filter_button_item" v-for="it in buttonsFilterGroupList" :key="it.id"
                 :color-text-hex="it.colorText" :color-hex="it.colorHex" :outlined="it.outlined" :text="it.text"
                 @click="selectFilterGroupItem(it)"></primary-button>
         </div>
 
+        <span style="margin-top: 10px; color: white; font-size: 17px;">Категория: {{ selectedFilterGroupItem?.text
+            }}</span>
+
         <!-- DATAVIEW COMPONENT -->
         <div class="dataview grid">
-            <div v-for="it in projects" :key="it.id" class="col-12 lg:col-3 project_item"
+            <div v-for="it in filteredProjects" :key="it.id" class="col-12 lg:col-3 project_item"
                 :style="{ ...{ padding: '10px', margin: '10px', display: 'flex', border: '1px solid #cacaca' } }">
 
                 <Carousel :show-indicators="false" :autoplayInterval="5_000" :value="it.images" :numVisible="1"
@@ -105,10 +109,8 @@ import PrimaryButton from '@/components/ui/Buttons/PrimaryButton.vue';
 import Carousel from 'primevue/carousel';
 import Tag from 'primevue/tag';
 import Dialog from 'primevue/dialog';
-import Rating from 'primevue/rating';
 
-
-import { reactive, ref } from 'vue';
+import { reactive, ref, computed } from 'vue';
 
 // buttons list values
 const buttonsFilterGroupList = ref([
@@ -118,6 +120,7 @@ const buttonsFilterGroupList = ref([
         colorHex: '#fff',
         outlined: false,
         text: 'Все',
+        category: 'all',
     },
     {
         id: 1,
@@ -125,6 +128,7 @@ const buttonsFilterGroupList = ref([
         colorHex: 'white',
         outlined: true,
         text: 'Прототипирование',
+        category: 'prototyping',
     },
     {
         id: 2,
@@ -132,6 +136,7 @@ const buttonsFilterGroupList = ref([
         colorHex: 'white',
         outlined: true,
         text: 'Разработка',
+        category: 'development',
     },
     {
         id: 3,
@@ -139,6 +144,7 @@ const buttonsFilterGroupList = ref([
         colorHex: 'white',
         outlined: true,
         text: 'Дизайн',
+        category: 'design',
     },
     {
         id: 4,
@@ -146,6 +152,7 @@ const buttonsFilterGroupList = ref([
         colorHex: 'white',
         outlined: true,
         text: 'Архитектура и проектирование',
+        category: 'architectureAndEngineering',
     },
     {
         id: 5,
@@ -153,6 +160,7 @@ const buttonsFilterGroupList = ref([
         colorHex: 'white',
         outlined: true,
         text: 'Плагины',
+        category: 'plagins',
     },
     {
         id: 6,
@@ -160,6 +168,7 @@ const buttonsFilterGroupList = ref([
         colorHex: 'white',
         outlined: true,
         text: 'Парсеры',
+        category: 'parsers',
     },
     {
         id: 7,
@@ -167,11 +176,19 @@ const buttonsFilterGroupList = ref([
         colorHex: 'white',
         outlined: true,
         text: 'Боты',
+        category: 'bots',
     },
 ])
 
 // filter group features
-const selectedFilterGroupItem = ref(null);
+const selectedFilterGroupItem = ref({
+    id: 0,
+    colorText: 'black',
+    colorHex: '#fff',
+    outlined: false,
+    text: 'Все',
+    category: 'all',
+});
 
 function selectFilterGroupItem(item) {
     selectedFilterGroupItem.value = item;
@@ -240,7 +257,7 @@ const projects = reactive(
                 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/project-images%2FAntarctica%20Website.jpg?alt=media&token=a60a9e24-157a-4703-a9f8-8d74e3e1f595',
             ],
             price: 20_000,
-            category: 'design',
+            category: 'prototyping',
             tags: [
                 {
                     id: 0,
@@ -467,6 +484,17 @@ function onSelectProject(project) {
     visibleMoreCaseDialog.value = true;
     selectedProject.value = project
 }
+
+// computed
+const filteredProjects = computed(() => {
+    if (!selectedFilterGroupItem.value || selectedFilterGroupItem.value.category === 'all') {
+        return projects; // Возвращаем все проекты, если не выбрана фильтрация
+    }
+
+    return projects.filter(project =>
+        project.tags.some(tag => tag.label === selectedFilterGroupItem.value.text)
+    );
+});
 
 
 </script>
