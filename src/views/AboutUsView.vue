@@ -25,7 +25,7 @@
 
                 <div class="left__section_container-button">
                     <primary-button :color-text-hex="'#ffffff'" :color-hex="'#ffffff'" :outlined="true"
-                        :text="'Оформить заявку'"></primary-button>
+                        :text="'Посмотреть услуги'" @click="goOurServices()"></primary-button>
                 </div>
 
                 <div class="bottom__container">
@@ -71,6 +71,9 @@ import mobIcon from '@/assets/icons/services-icons/develop-mob.png';
 import serverIcon from '@/assets/icons/services-icons/servers-icon.png';
 
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const { blurBoxStyle } = useBlurBox({ width: '400px', height: '230px' });
 
@@ -133,6 +136,11 @@ async function getIconPath(icon) {
         console.error('Ошибка загрузки изображения:', error);
         return ''; // Возвращаем пустую строку в случае ошибки
     }
+}
+
+// Переход на страницу сервесов
+function goOurServices() {
+    router.push({ name: 'our-services' })
 }
 </script>
 
