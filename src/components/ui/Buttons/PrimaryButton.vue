@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Button :label="text" :outlined="outlined" :style="buttonStyle" />
+        <Button :label="text" :outlined="outlined" :style="buttonStyle" class="customize-button-hover-effect" />
     </div>
 </template>
 
@@ -24,3 +24,12 @@ const buttonStyle = reactive({
 })
 
 </script>
+
+<style scoped>
+
+.customize-button-hover-effect:hover {
+ color: rgb(46, 64, 68) !important;
+ transition: .3s ease;
+}
+
+</style>
