@@ -7,7 +7,10 @@ export const useAnimTeamsStore = defineStore('animTeamsStore', () => {
 
     // ######################  STATE
     const animationExecuteState = ref(false);        // Переключатель для отслеживания выполнения анимации. true - анимация выполняется / false - анимация не выполняется(уже выполнена)
-
+    const widthInfoSection = ref(1200)               // Ширина блока информации тиммейта
+    const infoSectionId = ref('teams-info-section');    //  айдишник секции, которая оборачивает preview- и summary- блоки
+    const previewId = ref('teams-preview-block');       //  айдишник блока с Картинкой члена команды. Нужен для анимации появления/скрытия 
+    const summaryId = ref('teams-summary-block');       //  айдишник блока с Описанием члена команды. Нужен для анимации появления/скрытия 
 
     // ######################  ACTIONS
     // Анимация отрисовки текста
@@ -54,13 +57,27 @@ export const useAnimTeamsStore = defineStore('animTeamsStore', () => {
             y: 0,
         }
     }
+
+    // Дебаунсер для оптимизации обновления событий
+    function debounce(func, delay) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), delay);
+        };
+    }
+
+    // Корректировка id-элемента для правильного применения анимаций
+    function correctID(id='') {
+        return (id[0] !== '#') ? ['#', ...id].join('') : id;
+    }
+
     async function executeOneTeamsAnimation(id='', config=exampleExecuteOneParam) {
         if(!id || !config) throw 'id required arg';
-        // Корректировка id-элемента для правильного применения анимаций
-        let correctID = (id[0] !== '#') ? ['#', ...id].join('') : id;
+        
         return new Promise((resolve, reject) => {
             setTimeout(async () => {
-                await gsap.to(correctID, { 
+                await gsap.to(correctID(id), { 
                     duration: config.duration, 
                     scale: config.scale, 
                     opacity: config.opacity, 
@@ -73,7 +90,7 @@ export const useAnimTeamsStore = defineStore('animTeamsStore', () => {
 
     /**
      * @description Операция для запуска множества анимаций (Если на странице Teams необходимо одновоеменно анимировать несколько объектов)
-     */
+    */
     async function executeAllTeamsAnimation(inputDatas = [{ id: '', config: exampleExecuteOneParam }]) {
         animationExecuteState.value = true
         const animations = []       // в массив помещаются промисы анимаций, которые нужно выполнить одновременно
@@ -85,11 +102,83 @@ export const useAnimTeamsStore = defineStore('animTeamsStore', () => {
         Promise.all(animations).then(() => animationExecuteState.value = false);
     }
 
+    /**
+     * @description 
+     * Операция анимирует общий блок данных о тиммейте
+    */
+    const infoSectionAnimConfig = { isFade: false, duration: 0.4, delay: 0, opacity: 1, width: widthInfoSection.value };
+    async function infoSectionAnim(id='', config=infoSectionAnimConfig) {
+        try {
+            // Корректировка конфига, для того чтобы избежать неявной потери ключей конфигурации 
+            let correctConfig = { ...infoSectionAnimConfig, ...config };  
+            // Появление блока
+            if(correctConfig.isFade === false) {
+                await gsap.to(correctID(id), { 
+                    duration: correctConfig.duration, 
+                    delay: correctConfig.delay,
+                    opacity: correctConfig.opacity,
+                    width: correctConfig.width,
+                });
+            }
+            // Скрытие блока
+            else if(correctConfig.isFade === true) {
+                await gsap.to(correctID(id), { 
+                    duration: correctConfig.duration, 
+                    delay: correctConfig.delay,
+                    opacity: correctConfig.opacity,
+                    width: correctConfig.width,
+                });
+            }
+            return;
+        } catch (err) {
+            throw err;
+        }
+    }
+
+
+
+    // Выполняет resize блока информации тиммейта
+    const sizeConfDefault = { w: null, h: null } 
+    function resizeInfoSection(size=sizeConfDefault) {
+        const { w: width, h: height } = { ...sizeConfDefault, ...size };
+        const block = document.getElementById(infoSectionId.value)
+        if(typeof width === 'number') {
+            block.style.width = `${width}px`;
+        }
+        if(typeof height === 'number') {
+            block.style.height = `${height}px`;
+        }
+    }
+    // Обработчик адаптива для ключевого кадра
+    function handlerFrameAdaptive( value, keyframe, values={ less: 0, greater: 0 }, callback=(updVal=0) => {}) {
+        try {
+            // Если фактическое значение value меньше чем ключевой кадр, то высота/ширина экрана уменьшается.
+            if(value <= keyframe) {
+                if(values.less) callback(values.less);
+            }
+            else {
+                if(values.greater) callback(values.greater);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+    // Функция для адаптива секции тиммейтовской инфы под размеры экрана
+    function adaptiveInfoSection(frame_w, frame_h) {
+        handlerFrameAdaptive(frame_w, 1280, { less: 1100, greater: 1200 }, (updVal) => resizeInfoSection({ w: updVal }));
+    }
 
     return {
         animationExecuteState,
+        widthInfoSection,
+        infoSectionId,
+        previewId,
+        summaryId,
+        debounce,
         initTextAnimation,
         executeOneTeamsAnimation,
         executeAllTeamsAnimation,
+        infoSectionAnim,
+        adaptiveInfoSection,
     }
 });
