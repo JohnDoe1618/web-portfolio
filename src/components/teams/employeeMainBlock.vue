@@ -5,7 +5,7 @@
     >
         <previewImageBlock 
         :main-id="previewId"
-        :preview-data="{}"
+        :preview-data="widgetData?.preview"
         />
         <previewSummaryBlock 
         :main-id="summaryId"
@@ -18,7 +18,7 @@ import previewImageBlock from '@/components/teams/previewImageBlock.vue';
 import previewSummaryBlock from '@/components/teams/previewSummaryBlock.vue';
 import { useMainTeamsStore } from '@/stores/teams/mainStore';
 import { useAnimTeamsStore } from '@/stores/teams/animStore';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 
@@ -26,6 +26,8 @@ const animStore = useAnimTeamsStore();
 const mainTeamStore = useMainTeamsStore();
 const { previewId, summaryId, infoSectionId } = animStore;
 const route = useRoute();
+
+const widgetData = ref(null);
 
 function findWidgetData() {
     try {
@@ -35,10 +37,9 @@ function findWidgetData() {
     }
 }
 
-onMounted(() => {
-    const result = findWidgetData();
-    console.log(result);
-})
+onMounted(async () => {
+    widgetData.value = findWidgetData();
+});
 
 
 </script>

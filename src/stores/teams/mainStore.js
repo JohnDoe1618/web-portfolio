@@ -8,7 +8,7 @@ export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
             id: 'jd2sf3',
             widget: 1,
             preview: {
-                image: '../../assets/preview/A__-fotor-bg-remover-202410111749.png',
+                image: 'image1',
                 fullname: 'Эвери Владислав',
                 jobTitle: 'Full-stack разработчик',
             },
@@ -54,7 +54,7 @@ export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
             id: 'kf83if',
             widget: 2,
             preview: {
-                image: '../../assets/preview/08L2NBqfkhCGh9HA86Crg_transformed_fotor_2024022417932_fotor_bg_remover.png',
+                image: 'image2',
                 fullname: 'Эртман Эрик',
                 jobTitle: 'Full-stack разработчик',
             },
