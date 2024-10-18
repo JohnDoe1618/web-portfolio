@@ -75,4 +75,6 @@ onMounted(async () => {
     opacity: 0;
     transform: translate(350px, 0px);
 }
+
+
 </style>
