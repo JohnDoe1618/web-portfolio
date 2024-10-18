@@ -35,5 +35,6 @@ const props = defineProps({
     color: #bcd4e7;
     font-size: 12px;
     margin-left: 20px;
+    width: 60%;
 }
 </style>

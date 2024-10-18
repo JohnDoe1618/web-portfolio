@@ -8,14 +8,19 @@
 
         <div class="left__section">
             <div class="left__section_container">
-                <WelcomeText text="Добро пожаловать в Abstergo" />
+                <WelcomeText text="Добро пожаловать в HackBussines" />
                 <AboutUsText class="mt-6" :text="aboutUsDescription" />
                 <div class="left__section_container-button">
                     <primary-button :color-text-hex="'#ffffff'" :color-hex="'#ffffff'" :outlined="true"
                         :text="'Посмотреть услуги'" @click="goOurServices()" />
                 </div>
-                <ContactInfo phone="+7 999 600 22 11"
-                    address="100 Main St. New York NY 10002. USA - Сайт написан на vue3 + typescript" />
+                <ContactInfo phone="+7 999 600 22 11" :address="`
+                        Москва, Московская область,
+                        Системный статус: активен,
+                        RF | Все права защищены,
+                        Внимание: доступ к данным ограничен. Не пытайтесь взломать - это может привести к непредсказуемым последствиям.
+                        #ХакерыНаСвободе #КодБезГраниц
+                        `" />
             </div>
         </div>
 
@@ -46,7 +51,7 @@ const { baseServicesList, items, position } = useAboutView();
 
 const aboutUsDescription = ref(
     `
-    Мы — команда экспертов, создающая инновационные решения для вашего бизнеса. Разрабатываем
+    Мы — команда специалистов, создающая решения различной сложности для вашего бизнеса. Разрабатываем
     мобильные приложения, десктопные и веб-приложения, серверные решения и многое другое. Дайте нам
     шанс превратить ваши идеи в реальность и вывести ваш проект на новый уровень
     `
@@ -177,5 +182,4 @@ const goOurServices = () => router.push({ name: 'our-services' });
         -o-transform: perspective(500px) rotateY(-42deg);
     }
 }
-
 </style>

@@ -4,12 +4,12 @@
             <template #start>
                 <div>
                     <h2 class="p-0" style="font-weight: 700;">
-                        Abstergo
+                        HB
                     </h2>
                 </div>
             </template>
             <template #item="{ item }">
-                <div class="p-2" :style="navbarItemStyle">
+                <div class="p-2 customize-button-hover-effect" :style="navbarItemStyle">
                     {{ item.label }}
                 </div>
             </template>
@@ -59,19 +59,22 @@ const switchOnView = (route) => router.push({ name: route })
 // styling
 const navbarDisplayContent = reactive({
     display: "flex",
-    "background-color": 'rgba(255, 255, 255, 0.1)', 
+    "background-color": 'rgba(255, 255, 255, 0.1)',
     color: 'azure',
     // alignItems: "center", 
     // justifyContent: "center"
 });
 
 const navbarItemStyle = reactive({
-    cursor: 'pointer', 
+    cursor: 'pointer',
     color: 'white',
 })
 
 </script>
 
 <style scoped>
-
+.customize-button-hover-effect:hover {
+    color: rgb(46, 64, 68) !important;
+    transition: .3s ease;
+}
 </style>
