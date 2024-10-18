@@ -35,6 +35,10 @@ const props = defineProps({
         required: false,
         default: null,
     },
+    previewData: {
+        type: Object,
+        required: true,
+    }
 });
 
 // #######################################   DATA   #######################################
@@ -61,7 +65,7 @@ async function initInnerAnimation(duration=0.18, delay=0.4) {
 }
 
 // #######################################   WATCH   #######################################
-// Внутренние анимации выпоняются после того как заверится анимация появления главного компонента
+// Внутренние анимации выпоняются после того как завершится анимация появления главного компонента
 watch(() => animStore.animationExecuteState, (newValue) => {
     if(newValue === false) {
         initInnerAnimation(0.18, 0)
@@ -92,6 +96,7 @@ watch(() => animStore.animationExecuteState, (newValue) => {
     overflow: hidden;
     box-shadow: var(--base-shadow-1);
     cursor: default;
+    transition: left 0.3s;
 }
 .preview-block__fg {
     position: absolute;
@@ -138,5 +143,12 @@ watch(() => animStore.animationExecuteState, (newValue) => {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* MEDIA QUEIES */
+@media (max-width: 1280px) {
+    .preview-block {
+        left: 3rem;
+    }
 }
 </style>

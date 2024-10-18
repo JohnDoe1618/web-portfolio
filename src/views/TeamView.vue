@@ -1,9 +1,24 @@
 <template>
     <div class="team-view">
-        <section :id="infoSectionId" class="employee-info-block">
-            <previewImageBlock :id="previewId" :main-id="previewId"/>
-            <previewSummaryBlock :id="summaryId" :main-id="summaryId"/>
+        <buttonSlide icon-direction="left"/>
+        <div>
+            
+        </div>
+        <section 
+        :id="infoSectionId" 
+        class="employee-info-block"
+        v-for="item in mainTeamStore.teams"
+        :key="item.id"
+        >
+            <previewImageBlock 
+            :main-id="previewId"
+            :preview-data="item.preview"
+            />
+            <previewSummaryBlock 
+            :main-id="summaryId"
+            />
         </section>
+        <buttonSlide icon-direction="right"/>
     </div>
 </template>
 
@@ -11,10 +26,13 @@
 <script setup>
 import previewImageBlock from '@/components/teams/previewImageBlock.vue';
 import previewSummaryBlock from '@/components/teams/previewSummaryBlock.vue';
+import buttonSlide from '@/components/teams/buttonSlide.vue';
 import { useAnimTeamsStore } from '@/stores/teams/animStore';
 import { onMounted } from 'vue';
+import { useMainTeamsStore } from '@/stores/teams/mainStore';
 
-const animStore = useAnimTeamsStore()
+const animStore = useAnimTeamsStore();
+const mainTeamStore = useMainTeamsStore();
 const { previewId, summaryId, infoSectionId } = animStore;
 
 const { executeAllTeamsAnimation, infoSectionAnim, adaptiveInfoSection, debounce } = useAnimTeamsStore()
@@ -47,9 +65,9 @@ onMounted(async () => {
     overflow: hidden;
     height: calc(var(--router-layout-height) + 1vh);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0.8rem;
 }
 .employee-info-block {
     display: flex;
