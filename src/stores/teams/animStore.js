@@ -135,14 +135,13 @@ export const useAnimTeamsStore = defineStore('animTeamsStore', () => {
         }
     }
 
-
-
     // Выполняет resize блока информации тиммейта
     const sizeConfDefault = { w: null, h: null } 
     function resizeInfoSection(size=sizeConfDefault) {
         const { w: width, h: height } = { ...sizeConfDefault, ...size };
         const block = document.getElementById(infoSectionId.value)
         if(typeof width === 'number') {
+            console.log('WORK');
             block.style.width = `${width}px`;
         }
         if(typeof height === 'number') {
