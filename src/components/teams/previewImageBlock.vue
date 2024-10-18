@@ -1,6 +1,6 @@
 <!-----------------------------------------------------------TEMPLATE----------------------------------------------------------------------------->
 <template>
-    <div id="teams-preview-block" class="preview-block">
+    <div :id="props.mainId" class="preview-block">
         <div class="preview-block__fg">
             <div class="title-block mt-auto mr-auto mb-6 px-6 mx-4">
                 <h2 id="tm-pr-name">Эвери Владислав</h2>

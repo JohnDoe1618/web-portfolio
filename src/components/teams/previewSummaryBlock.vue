@@ -1,5 +1,5 @@
 <template>
-    <div class="summary-block ml-auto pr-5 mr-2 py-3">
+    <div :id="props.mainId" class="summary-block ml-auto pr-5 mr-2 py-3">
         <!-- Заголовок "Обо мне" -->
         <h1 class="summary-block__title">Обо мне</h1>
 
