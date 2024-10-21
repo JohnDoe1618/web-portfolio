@@ -44,7 +44,8 @@
                 <div class="timeline_component-wrapper">
                     <Timeline :value="serviceInfo.stages" align="alternate" class="customized-timeline">
                         <template #marker="{ item }">
-                            <img :src="item.icon" width="40px" height="40px" style="border-radius: 10rem;">
+                            <!-- <div style="width: 14px; height: 14px; border-radius: 10rem;" :style="{backgroundColor: item.color}"></div> -->
+                            <!-- <img :src="item.icon" width="40px" height="40px" style="border-radius: 10rem;"> -->
                         </template>
                         <template #content="{ item }">
                             <Card class="mt-4">
@@ -56,10 +57,11 @@
                                         :src="`https://primefaces.org/cdn/primevue/images/product/${item.image}`"
                                         :alt="item.name" width="200" class="shadow-sm" />
                                     <p style="color: black;">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
+                                        {{ item.desc || `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        Inventore sed
                                         consequuntur error repudiandae numquam deserunt quisquam repellat libero
                                         asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate
-                                        neque quas!
+                                        neque quas!` }}
                                     </p>
                                 </template>
                             </Card>
