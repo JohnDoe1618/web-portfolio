@@ -458,38 +458,77 @@ export function useServicesView() {
                 technologies: [
                     {
                         id: 0,
-                        label: 'Dart',
-                        desc: 'Язык программирования для разработки мобильных приложений и не только...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Figma',
+                        desc: 'Инструмент для проектирования интерфейсов и прототипирования.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Ffigma.png?alt=media&token=ec1af8f7-28e3-4474-8a6f-701388cfb866',
                     },
                     {
                         id: 1,
-                        label: 'Flutter',
-                        desc: 'Flutter - платформа для разработки кросплатформенных приложений под различные устройства, включая android и ios',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Photoshop',
+                        desc: 'Мощный графический редактор, используемый для обработки изображений, создания графики и дизайна пользовательских интерфейсов.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fphotoshop.png?alt=media&token=6cd42201-7412-49d6-91c6-464a4febc03d',
                     },
                     {
                         id: 2,
-                        label: 'Облачные сервисы',
-                        desc: 'Используем различные облачные сервисы для разработки приложений: AWS, Google cloud, Azure...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Sketch',
+                        desc: 'Популярный инструмент для создания интерфейсов, особенно в среде Mac.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fsketch.png?alt=media&token=3f412b06-91de-4f68-bfb3-12bc6da0714f',
                     },
                     {
                         id: 3,
-                        label: 'Базы данных',
-                        desc: 'В разработке мобильных приложений мы используем различные базы данных MySql, Postgresql, mongodb, supabase...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Axure RP',
+                        desc: 'Инструмент для создания прототипов с поддержкой сложных взаимодействий',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Faxure-rp.png?alt=media&token=187be223-da4f-4376-ac46-67d46fd83cc8',
                     },
                 ],
                 stages: [
-                    { status: 'Processing', timeline: '30-45', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#673AB7' },
-                    { status: 'Shipped', timeline: '20-50', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#FF9800' },
-                    { status: 'Delivered', timeline: '10-20', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fcodinghtml_117796.png?alt=media&token=f92b4e4b-404a-4300-b2e1-56538046c8b5', color: '#607D8B' },
+                    {
+                        status: 'Исследование и анализ',
+                        desc: 'Сбор информации о целевой аудитории, конкурентных решениях и трендах в дизайне. Это помогает понять потребности пользователей и определить направления для дизайна.  ',
+                        timeline: '3-12',
+                        color: '#673AB7',
+                    },
+                    {
+                        status: 'Создание прототипов',
+                        desc: 'Разработка низкоуровневых и высокоуровневых прототипов, отражающих структуру и взаимодействие интерфейса. Это позволяет визуализировать идеи и получить обратную связь от заказчика.  ',
+                        timeline: '14-28',
+                        color: '#FF9800',
+                    },
+                    {
+                        status: 'Дизайн интерфейса',
+                        desc: 'Создание визуального дизайна интерфейса, включая выбор цветовой палитры, шрифтов и элементов интерфейса. Этот этап также включает создание стилей и гайдлайнов для разработки.  ',
+                        timeline: '12-90',
+                        color: '#FF9800',
+                    },
+                    {
+                        status: 'Передача и поддержка',
+                        desc: 'Передача готовых дизайнов разработчикам и поддержка на этапе реализации. Включает в себя ответы на вопросы и внесение корректировок при необходимости.',
+                        timeline: '4-8',
+                        color: '#607D8B',
+                    },
                 ],
                 faq: [
-                    { title: 'Что делать если 1', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '0' },
-                    { title: 'Что делать если 2', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '1' },
-                    { title: 'Что делать если 3', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '2' }
+                    {
+                        title: 'Какой процесс вы используете для дизайна пользовательского интерфейса?',
+                        content: 'Мы начинаем с исследования и анализа целевой аудитории, затем создаем прототипы и проводим тестирование, чтобы получить обратную связь и внести необходимые изменения.',
+                        value: '0'
+                    },
+                    {
+                        title: 'Как долго занимает разработка дизайна?',
+                        content: 'Время разработки зависит от сложности проекта и может занять от нескольких дней до нескольких недель, в зависимости от объема работы и требований клиента.',
+                        value: '1'
+                    },
+                    {
+                        title: 'Предоставляете ли вы услуги по улучшению существующих интерфейсов?',
+                        content: 'Да, мы можем оценить и улучшить существующие интерфейсы, чтобы повысить их удобство и привлекательность для пользователей.',
+                        value: '2'
+                    },
+                    {
+                        title: 'Какова стоимость разработки дизайна?',
+                        content: 'Стоимость варьируется в зависимости от кол-ва страниц и общего масштаба приложения. Мы предлагаем индивидуальные расценки, поэтому рекомендуем обсудить ваши требования для получения точной оценки.',
+                        value: '3'
+                    },
+
                 ],
             }
         },
