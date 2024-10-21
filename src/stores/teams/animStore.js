@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import gsap from "gsap";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
 
 export const useAnimTeamsStore = defineStore('animTeamsStore', () => {
@@ -8,9 +8,15 @@ export const useAnimTeamsStore = defineStore('animTeamsStore', () => {
     // ######################  STATE
     const animationExecuteState = ref(false);        // Переключатель для отслеживания выполнения анимации. true - анимация выполняется / false - анимация не выполняется(уже выполнена)
     const widthInfoSection = ref(1200)               // Ширина блока информации тиммейта
-    const infoSectionId = ref('teams-info-section');    //  айдишник секции, которая оборачивает preview- и summary- блоки
-    const previewId = ref('teams-preview-block');       //  айдишник блока с Картинкой члена команды. Нужен для анимации появления/скрытия 
-    const summaryId = ref('teams-summary-block');       //  айдишник блока с Описанием члена команды. Нужен для анимации появления/скрытия 
+    const animationIds = reactive({
+        infoSection: ['teams-info-section'],      //  айдишник секции, которая оборачивает preview- и summary- блоки
+        preview: ['teams-preview-block', {          //  айдишник блока с Картинкой члена команды. Нужен для анимации появления/скрытия 
+            name: 'tm-pr-name',                         //  id для анимации имени на превью картинке
+            jobtitle: 'tm-pr-jobtitle',                 //  id для анимации должности
+            lnkbtn: 'tm-pr-lnkbtn',                     //  id для анимации кнопки "связаться"
+        }],
+        summary: ['teams-summary-block'],           //  айдишник блока с Описанием члена команды. Нужен для анимации появления/скрытия
+    })
 
     // ######################  ACTIONS
     // Анимация отрисовки текста
@@ -139,7 +145,7 @@ export const useAnimTeamsStore = defineStore('animTeamsStore', () => {
     const sizeConfDefault = { w: null, h: null } 
     function resizeInfoSection(size=sizeConfDefault) {
         const { w: width, h: height } = { ...sizeConfDefault, ...size };
-        const block = document.getElementById(infoSectionId.value)
+        const block = document.getElementById(animationIds.infoSection[0])
         if(typeof width === 'number') {
             console.log('WORK');
             block.style.width = `${width}px`;
@@ -170,9 +176,7 @@ export const useAnimTeamsStore = defineStore('animTeamsStore', () => {
     return {
         animationExecuteState,
         widthInfoSection,
-        infoSectionId,
-        previewId,
-        summaryId,
+        animationIds,
         debounce,
         initTextAnimation,
         executeOneTeamsAnimation,

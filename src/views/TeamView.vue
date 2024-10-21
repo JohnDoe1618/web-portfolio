@@ -34,14 +34,14 @@
         </Carousel> -->
         <buttonSlide 
         icon-direction="left"
-        @click=""
+        @click="choosePrevWidget"
         />
 
         <RouterView />
 
         <buttonSlide 
         icon-direction="right"
-        @click=""
+        @click="chooseNextWidget"
         />
     </div>
 </template>
@@ -50,19 +50,54 @@
 <script setup>
 import buttonSlide from '@/components/teams/buttonSlide.vue';
 import { useAnimTeamsStore } from '@/stores/teams/animStore';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useMainTeamsStore } from '@/stores/teams/mainStore';
 import { RouterView, useRoute, useRouter } from 'vue-router';
 
+// #####################################  COMPOSABLES  ###################################
 const route = useRoute();
 const router = useRouter();
 const animStore = useAnimTeamsStore();
 const mainTeamStore = useMainTeamsStore();
-const { previewId, summaryId, infoSectionId } = animStore;
-const { executeAllTeamsAnimation, infoSectionAnim, adaptiveInfoSection, debounce } = useAnimTeamsStore()
+const { animationIds: { infoSection, preview, summary } } = animStore;
+const previewId = preview[0];
+const summaryId = summary[0];
+const infoSectionId = infoSection[0];
+const { executeAllTeamsAnimation, infoSectionAnim, adaptiveInfoSection, debounce } = useAnimTeamsStore();
 
-onMounted(async () => {
-    // Провяление анимаций
+// #####################################  DATA  ###################################
+
+const currentWidget = ref(1);
+
+// #####################################  METHODS  ###################################
+function initCurrentWidget() {
+    currentWidget.value = +route.params['id'];
+} 
+
+// Выбрать предыдущий виджет
+async function choosePrevWidget() {
+    if ( (currentWidget.value - 1) <= 0 ) {
+        return;
+    }
+    await hideSection();
+    currentWidget.value--;
+    await router.push({ name: 'selectedEmployee', params: { id: currentWidget.value } })
+    await showSection();
+}
+
+// Выбрать следующий виджет
+async function chooseNextWidget() {
+    if ( (currentWidget.value + 1) > mainTeamStore.teams.length ) {
+        return;
+    }
+    await hideSection();
+    currentWidget.value++;
+    await router.push({ name: 'selectedEmployee', params: { id: currentWidget.value } })
+    await showSection();
+}
+
+// Анимация отображает секцию и её внутрениие элементы
+async function showSection() {
     // Основной виджет
     await infoSectionAnim(infoSectionId, { delay: 0.3, duration: 0.2 });
     // Внутренние виджеты
@@ -70,6 +105,25 @@ onMounted(async () => {
         { id: previewId, config: { delay: 100, duration: 0.4, scale: 1, opacity: 1, transform: { x: 0, y: 0 } } },
         { id: summaryId, config: { delay: 100, duration: 0.4, scale: 1, opacity: 1, transform: { x: 0, y: 0 } } },
     ]);
+}
+
+// Анимация скрывает секцию и внутренние её элементы
+async function hideSection() {
+    await executeAllTeamsAnimation([
+        { id: previewId, config: { delay: 0, duration: 0.4, scale: 0, opacity: 0, transform: { x: -350, y: 0 } } },
+        { id: summaryId, config: { delay: 0, duration: 0.4, scale: 0, opacity: 0, transform: { x: 350, y: 0 } } },
+    ])
+    await infoSectionAnim(infoSectionId, { delay: 0.2, duration: .4, isFade: true, width: 50, opacity: 0 });
+}
+
+// #####################################  HOOKS  ###################################
+onMounted(async () => {
+    console.log(previewId, summaryId, infoSectionId);
+    
+    // Инициализация номера текущего виджета
+    initCurrentWidget();
+    // Провяление анимаций
+    await showSection();
 
     // // Ичезновение 
     // setTimeout(async () => {

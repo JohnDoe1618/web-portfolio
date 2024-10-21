@@ -18,27 +18,38 @@ import previewImageBlock from '@/components/teams/previewImageBlock.vue';
 import previewSummaryBlock from '@/components/teams/previewSummaryBlock.vue';
 import { useMainTeamsStore } from '@/stores/teams/mainStore';
 import { useAnimTeamsStore } from '@/stores/teams/animStore';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 
 const animStore = useAnimTeamsStore();
 const mainTeamStore = useMainTeamsStore();
-const { previewId, summaryId, infoSectionId } = animStore;
+const { animationIds: { infoSection, preview, summary } } = animStore;
+const previewId = preview[0];
+const summaryId = summary[0];
+const infoSectionId = infoSection[0];
 const route = useRoute();
 
 const widgetData = ref(null);
 
-function findWidgetData() {
+// Получение данных открытого виджета
+function findWidgetData(id) {
     try {
-        return mainTeamStore.teams.find((value) => value.widget == route.params['id'])
+        return mainTeamStore.teams.find((value) => value.widget == id)
     } catch (err) {
         throw err;
     }
 }
 
+// Отслеживание изменения
+watch(() => route.params['id'], (newValue, oldValue) => {
+    if(!!newValue && !!oldValue) {
+        widgetData.value = findWidgetData(+newValue);
+    }
+})
+
 onMounted(async () => {
-    widgetData.value = findWidgetData();
+    widgetData.value = findWidgetData(route.params['id'])
 });
 </script>
 
