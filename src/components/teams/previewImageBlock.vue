@@ -3,8 +3,8 @@
     <div :id="props.mainId" class="preview-block">
         <div class="preview-block__fg">
             <div class="title-block mt-auto mr-auto mb-6 px-6 mx-4">
-                <h2 id="tm-pr-name">{{ previewData?.fullname }}</h2>
-                <h4 id="tm-pr-jobtitle" class="ml-3 mb-auto mt-3">{{ previewData?.jobTitle }}</h4>
+                <h2 id="tm-pr-name">{{ props.data?.fullname }}</h2>
+                <h4 id="tm-pr-jobtitle" class="ml-3 mb-auto mt-3">{{ props.data?.jobTitle }}</h4>
                 <Button 
                 id="tm-pr-lnkbtn"
                 class="contact-btn " 
@@ -14,7 +14,7 @@
                 />
             </div>
         </div>
-        <img class="preview-block__image" :src="im" alt="Preview Image">
+        <img v-if="!isLoadingImg" class="preview-block__image" :src="imageSrc" alt="Preview Image">
     </div>
 </template>
 
@@ -22,12 +22,11 @@
 
 <script setup>
 import gsap from 'gsap';
-import { ref, defineProps, watch, onMounted } from 'vue';
+import { ref, defineProps, watch, onMounted, nextTick } from 'vue';
 import { useAnimTeamsStore } from '@/stores/teams/animStore';
 import { images } from '@/assets/preview';
 // #######################################   COMPOSABLES   #######################################
 const animStore = useAnimTeamsStore();
-const image = ref(null);
 
 // #######################################   PROPS   #######################################
 const props = defineProps({
@@ -36,7 +35,7 @@ const props = defineProps({
         required: false,
         default: null,
     },
-    previewData: {
+    data: {
         type: Object,
         required: false,
         default: null,
@@ -45,7 +44,8 @@ const props = defineProps({
 
 // #######################################   DATA   #######################################
 const lnkBtnTitle = ref('');
-const im = ref('');
+const imageSrc = ref('');
+const isLoadingImg = ref(false);
 
 
 // #######################################   METHODS   #######################################
@@ -74,15 +74,22 @@ watch(() => animStore.animationExecuteState, (newValue) => {
     }
 });
 
+// Импорт изображения и корректное создание его URl
+function importImage(imageName) {
+    return new URL(`../../assets/preview/${imageName}`, import.meta.url).href;
+}
+
 // #######################################   HOOKS   #######################################
 onMounted(async () => {
+    try {
+        isLoadingImg.value = true;
+        await nextTick();
+        imageSrc.value = importImage(images[props.data?.image]);
+    } finally {
+        isLoadingImg.value = false;
+    }
 
-    // Загрузка изображения
-    images[props.previewData?.image].then((img) => {
-        im.value = img.default; // Получаем URL изображения
-    });
 });
-
 </script>
 
 <!----------------------------------------------------------STYLES------------------------------------------------------------------------>

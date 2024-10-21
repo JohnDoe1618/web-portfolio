@@ -8,7 +8,7 @@ export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
             id: 'jd2sf3',
             widget: 1,
             preview: {
-                image: 'image1',
+                image: 'img1',
                 fullname: 'Эвери Владислав',
                 jobTitle: 'Full-stack разработчик',
             },
@@ -54,7 +54,7 @@ export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
             id: 'kf83if',
             widget: 2,
             preview: {
-                image: 'image2',
+                image: 'img2',
                 fullname: 'Эртман Эрик',
                 jobTitle: 'Full-stack разработчик',
             },

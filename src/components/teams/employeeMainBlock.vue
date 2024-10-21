@@ -5,7 +5,7 @@
     >
         <previewImageBlock 
         :main-id="previewId"
-        :preview-data="widgetData?.preview"
+        :data="widgetData?.preview"
         />
         <previewSummaryBlock 
         :main-id="summaryId"
@@ -40,9 +40,9 @@ function findWidgetData() {
 onMounted(async () => {
     widgetData.value = findWidgetData();
 });
-
-
 </script>
+
+
 <style scoped>
 .employee-info-block {
     display: flex;

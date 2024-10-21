@@ -48,10 +48,9 @@
 
 
 <script setup>
-
 import buttonSlide from '@/components/teams/buttonSlide.vue';
 import { useAnimTeamsStore } from '@/stores/teams/animStore';
-import { onBeforeMount, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useMainTeamsStore } from '@/stores/teams/mainStore';
 import { RouterView, useRoute, useRouter } from 'vue-router';
 
