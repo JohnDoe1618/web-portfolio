@@ -2,7 +2,7 @@
     <OrderServiceDialog :visible="visibleOrderServiceDialog" :selectedService="selectedService" :inquiry="inquiry"
         :errors="errors" @closeDialog="closeOrderServiceDialog" @makeOrder="onMakeOrder" />
 
-    <MoreServiceDialog :visible="visibleMoreService" :serviceInfo="serviceInfo" @closeDialog="closeVisibleMoreService" />
+    <MoreServiceDialog :visible="visibleMoreService" :serviceInfo="selectedServiceInfo" @closeDialog="closeVisibleMoreService" />
 
     <div class="container">
         <div class="sidebar">
@@ -44,6 +44,7 @@ const {
     selectedFilterGroupItem,
     selectedService,
     serviceInfo,
+    selectedServiceInfo,
     visibleOrderServiceDialog,
     visibleMoreService,
     closeOrderServiceDialog,
