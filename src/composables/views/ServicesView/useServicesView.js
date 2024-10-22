@@ -581,104 +581,104 @@ export function useServicesView() {
         //         ],
         //     }
         // },
-        {
-            id: 6,
-            label: 'Разработка API',
-            icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fservices%2Fapi_icon_129131.png?alt=media&token=c3c22be2-994f-48f0-bca0-6def6dd7c914',
-            endProjectsCount: 4,
-            desc: "Создание API включает проектирование, разработку и документирование интерфейсов для взаимодействия между системами. Мы проводим полный цикл работы, от анализа требований до тестирования и поддержки API, обеспечивая его интеграцию с различными приложениями и сервисами.",
-            category: "full_cycle",
-            serviceInfo: {
-                imageSrc: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Fimages-services%2FAPI.jpg?alt=media&token=d7da7491-5456-4f49-a1e3-c72910172b69',
-                label: 'Разработка мобильных приложений в Abstergo',
-                desc: 'В Abstergo мы предлагаем профессиональные услуги по разработке мобильных приложений, используя современные технологии и инструменты, такие как Dart и Flutter. Наша команда опытных разработчиков создает высококачественные, производительные и эстетически привлекательные приложения для платформ iOS и Android.',
-                technologies: [
-                    {
-                        id: 0,
-                        label: 'Dart',
-                        desc: 'Язык программирования для разработки мобильных приложений и не только...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
-                    },
-                    {
-                        id: 1,
-                        label: 'Flutter',
-                        desc: 'Flutter - платформа для разработки кросплатформенных приложений под различные устройства, включая android и ios',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
-                    },
-                    {
-                        id: 2,
-                        label: 'Облачные сервисы',
-                        desc: 'Используем различные облачные сервисы для разработки приложений: AWS, Google cloud, Azure...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
-                    },
-                    {
-                        id: 3,
-                        label: 'Базы данных',
-                        desc: 'В разработке мобильных приложений мы используем различные базы данных MySql, Postgresql, mongodb, supabase...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
-                    },
-                ],
-                stages: [
-                    { status: 'Processing', timeline: '30-45', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#673AB7' },
-                    { status: 'Shipped', timeline: '20-50', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#FF9800' },
-                    { status: 'Delivered', timeline: '10-20', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fcodinghtml_117796.png?alt=media&token=f92b4e4b-404a-4300-b2e1-56538046c8b5', color: '#607D8B' },
-                ],
-                faq: [
-                    { title: 'Что делать если 1', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '0' },
-                    { title: 'Что делать если 2', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '1' },
-                    { title: 'Что делать если 3', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '2' }
-                ],
-            }
-        },
-        {
-            id: 7,
-            label: 'Консалтинг по IT',
-            icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fservices%2Fcounseling.png?alt=media&token=59f0c2e0-cbf0-4f0a-b302-90cb850e22d5',
-            endProjectsCount: 4,
-            desc: "IT-консалтинг предлагает услуги по анализу текущих бизнес-процессов и разработке стратегий по оптимизации и внедрению технологий. Мы проводим полный цикл работ, включая аудит, рекомендации по улучшениям, внедрение решений и последующий мониторинг эффективности.",
-            category: "full_cycle",
-            serviceInfo: {
-                imageSrc: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Fimages-services%2FCounsailing.jpg?alt=media&token=fc0bf9b3-e35c-4f3e-89c0-b36ed6daa4c4',
-                label: 'Разработка мобильных приложений в Abstergo',
-                desc: 'В Abstergo мы предлагаем профессиональные услуги по разработке мобильных приложений, используя современные технологии и инструменты, такие как Dart и Flutter. Наша команда опытных разработчиков создает высококачественные, производительные и эстетически привлекательные приложения для платформ iOS и Android.',
-                technologies: [
-                    {
-                        id: 0,
-                        label: 'Dart',
-                        desc: 'Язык программирования для разработки мобильных приложений и не только...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
-                    },
-                    {
-                        id: 1,
-                        label: 'Flutter',
-                        desc: 'Flutter - платформа для разработки кросплатформенных приложений под различные устройства, включая android и ios',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
-                    },
-                    {
-                        id: 2,
-                        label: 'Облачные сервисы',
-                        desc: 'Используем различные облачные сервисы для разработки приложений: AWS, Google cloud, Azure...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
-                    },
-                    {
-                        id: 3,
-                        label: 'Базы данных',
-                        desc: 'В разработке мобильных приложений мы используем различные базы данных MySql, Postgresql, mongodb, supabase...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
-                    },
-                ],
-                stages: [
-                    { status: 'Processing', timeline: '30-45', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#673AB7' },
-                    { status: 'Shipped', timeline: '20-50', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#FF9800' },
-                    { status: 'Delivered', timeline: '10-20', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fcodinghtml_117796.png?alt=media&token=f92b4e4b-404a-4300-b2e1-56538046c8b5', color: '#607D8B' },
-                ],
-                faq: [
-                    { title: 'Что делать если 1', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '0' },
-                    { title: 'Что делать если 2', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '1' },
-                    { title: 'Что делать если 3', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '2' }
-                ],
-            }
-        },
+        // {
+        //     id: 6,
+        //     label: 'Разработка API',
+        //     icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fservices%2Fapi_icon_129131.png?alt=media&token=c3c22be2-994f-48f0-bca0-6def6dd7c914',
+        //     endProjectsCount: 4,
+        //     desc: "Создание API включает проектирование, разработку и документирование интерфейсов для взаимодействия между системами. Мы проводим полный цикл работы, от анализа требований до тестирования и поддержки API, обеспечивая его интеграцию с различными приложениями и сервисами.",
+        //     category: "full_cycle",
+        //     serviceInfo: {
+        //         imageSrc: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Fimages-services%2FAPI.jpg?alt=media&token=d7da7491-5456-4f49-a1e3-c72910172b69',
+        //         label: 'Разработка мобильных приложений в Abstergo',
+        //         desc: 'В Abstergo мы предлагаем профессиональные услуги по разработке мобильных приложений, используя современные технологии и инструменты, такие как Dart и Flutter. Наша команда опытных разработчиков создает высококачественные, производительные и эстетически привлекательные приложения для платформ iOS и Android.',
+        //         technologies: [
+        //             {
+        //                 id: 0,
+        //                 label: 'Dart',
+        //                 desc: 'Язык программирования для разработки мобильных приложений и не только...',
+        //                 icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+        //             },
+        //             {
+        //                 id: 1,
+        //                 label: 'Flutter',
+        //                 desc: 'Flutter - платформа для разработки кросплатформенных приложений под различные устройства, включая android и ios',
+        //                 icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+        //             },
+        //             {
+        //                 id: 2,
+        //                 label: 'Облачные сервисы',
+        //                 desc: 'Используем различные облачные сервисы для разработки приложений: AWS, Google cloud, Azure...',
+        //                 icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+        //             },
+        //             {
+        //                 id: 3,
+        //                 label: 'Базы данных',
+        //                 desc: 'В разработке мобильных приложений мы используем различные базы данных MySql, Postgresql, mongodb, supabase...',
+        //                 icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+        //             },
+        //         ],
+        //         stages: [
+        //             { status: 'Processing', timeline: '30-45', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#673AB7' },
+        //             { status: 'Shipped', timeline: '20-50', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#FF9800' },
+        //             { status: 'Delivered', timeline: '10-20', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fcodinghtml_117796.png?alt=media&token=f92b4e4b-404a-4300-b2e1-56538046c8b5', color: '#607D8B' },
+        //         ],
+        //         faq: [
+        //             { title: 'Что делать если 1', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '0' },
+        //             { title: 'Что делать если 2', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '1' },
+        //             { title: 'Что делать если 3', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '2' }
+        //         ],
+        //     }
+        // },
+        // {
+        //     id: 7,
+        //     label: 'Консалтинг по IT',
+        //     icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fservices%2Fcounseling.png?alt=media&token=59f0c2e0-cbf0-4f0a-b302-90cb850e22d5',
+        //     endProjectsCount: 4,
+        //     desc: "IT-консалтинг предлагает услуги по анализу текущих бизнес-процессов и разработке стратегий по оптимизации и внедрению технологий. Мы проводим полный цикл работ, включая аудит, рекомендации по улучшениям, внедрение решений и последующий мониторинг эффективности.",
+        //     category: "full_cycle",
+        //     serviceInfo: {
+        //         imageSrc: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Fimages-services%2FCounsailing.jpg?alt=media&token=fc0bf9b3-e35c-4f3e-89c0-b36ed6daa4c4',
+        //         label: 'Разработка мобильных приложений в Abstergo',
+        //         desc: 'В Abstergo мы предлагаем профессиональные услуги по разработке мобильных приложений, используя современные технологии и инструменты, такие как Dart и Flutter. Наша команда опытных разработчиков создает высококачественные, производительные и эстетически привлекательные приложения для платформ iOS и Android.',
+        //         technologies: [
+        //             {
+        //                 id: 0,
+        //                 label: 'Dart',
+        //                 desc: 'Язык программирования для разработки мобильных приложений и не только...',
+        //                 icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+        //             },
+        //             {
+        //                 id: 1,
+        //                 label: 'Flutter',
+        //                 desc: 'Flutter - платформа для разработки кросплатформенных приложений под различные устройства, включая android и ios',
+        //                 icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+        //             },
+        //             {
+        //                 id: 2,
+        //                 label: 'Облачные сервисы',
+        //                 desc: 'Используем различные облачные сервисы для разработки приложений: AWS, Google cloud, Azure...',
+        //                 icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+        //             },
+        //             {
+        //                 id: 3,
+        //                 label: 'Базы данных',
+        //                 desc: 'В разработке мобильных приложений мы используем различные базы данных MySql, Postgresql, mongodb, supabase...',
+        //                 icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+        //             },
+        //         ],
+        //         stages: [
+        //             { status: 'Processing', timeline: '30-45', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#673AB7' },
+        //             { status: 'Shipped', timeline: '20-50', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#FF9800' },
+        //             { status: 'Delivered', timeline: '10-20', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fcodinghtml_117796.png?alt=media&token=f92b4e4b-404a-4300-b2e1-56538046c8b5', color: '#607D8B' },
+        //         ],
+        //         faq: [
+        //             { title: 'Что делать если 1', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '0' },
+        //             { title: 'Что делать если 2', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '1' },
+        //             { title: 'Что делать если 3', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '2' }
+        //         ],
+        //     }
+        // },
         {
             id: 8,
             label: 'Безопасность',
@@ -692,39 +692,107 @@ export function useServicesView() {
                 desc: 'В Abstergo мы предлагаем профессиональные услуги по разработке мобильных приложений, используя современные технологии и инструменты, такие как Dart и Flutter. Наша команда опытных разработчиков создает высококачественные, производительные и эстетически привлекательные приложения для платформ iOS и Android.',
                 technologies: [
                     {
-                        id: 0,
-                        label: 'Dart',
-                        desc: 'Язык программирования для разработки мобильных приложений и не только...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
-                    },
-                    {
                         id: 1,
-                        label: 'Flutter',
-                        desc: 'Flutter - платформа для разработки кросплатформенных приложений под различные устройства, включая android и ios',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Kali Linux',
+                        desc: 'Kali Linux — это дистрибутив на базе Debian, специально разработанный для тестирования на проникновение и аудита безопасности.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Ficons8-kali-linux-144.png?alt=media&token=fdacdb39-4332-4a0f-b49d-26e2774677b7',
                     },
                     {
                         id: 2,
-                        label: 'Облачные сервисы',
-                        desc: 'Используем различные облачные сервисы для разработки приложений: AWS, Google cloud, Azure...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Metasploit Framework',
+                        desc: 'Metasploit — это платформа для разработки и выполнения эксплуатационных кодов.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2FMetasploit--Streamline-Simple-Icons.png?alt=media&token=823203a0-1cce-4b41-a3f8-bbfe590e0b07',
                     },
                     {
                         id: 3,
-                        label: 'Базы данных',
-                        desc: 'В разработке мобильных приложений мы используем различные базы данных MySql, Postgresql, mongodb, supabase...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Wireshark',
+                        desc: 'Wireshark — это мощный сетевой анализатор, который позволяет перехватывать и анализировать сетевой трафик.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2FWireshark--Streamline-Simple-Icons.png?alt=media&token=c73c4124-b2ff-45e4-a1d1-4185287974a3',
                     },
+                    {
+                        id: 4,
+                        label: 'Nmap',
+                        desc: 'Nmap — это инструмент для сканирования сети и выявления активных устройств, открытых портов и сервисов.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fnmap_icon_132152.png?alt=media&token=a71f188a-50a8-4cba-8eec-5babf9c389f9',
+                    },
+                    {
+                        id: 5,
+                        label: 'JWT (JSON Web Token)',
+                        desc: 'JWT — это стандарт для передачи информации между сторонами в виде JSON-объекта. В контексте аутсорсинга кибербезопасности JWT используется для безопасной аутентификации.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fjwt.png?alt=media&token=3539d2aa-15cf-4f33-9628-8de1a0fbbb4a',
+                    },
+                    {
+                        id: 6,
+                        label: 'Node.js',
+                        desc: 'Node.js — это платформа для серверного программирования на JavaScript, популярная для разработки веб-приложений.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fnode.png?alt=media&token=590724a9-2a9b-43c6-a4d3-e9a35899e381',
+                    },
+                    {
+                        id: 7,
+                        label: 'Двухфакторная аутентификация (2FA)',
+                        desc: 'Двухфакторная аутентификация — это метод защиты, который требует два различных способа подтверждения личности пользователя. Это значительно повышает уровень безопасности.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Ftwo-factor-authentication-2fa-icon.png?alt=media&token=8d16c4f0-df90-4fa8-a542-1eed092083a6',
+                    },
+                    {
+                        id: 8,
+                        label: 'Burp Suite',
+                        desc: 'Burp Suite — это интегрированная платформа для тестирования безопасности веб-приложений.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fburp_suite_macos_bigsur_icon_190319.png?alt=media&token=c238713c-1865-4812-bbaf-85e0af901615',
+                    },
+                    {
+                        id: 9,
+                        label: 'Nikto',
+                        desc: 'Nikto — это инструмент для сканирования веб-серверов на наличие уязвимостей и конфигурационных ошибок.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fnikto-logo.svg?alt=media&token=082fc3ff-0210-45e6-894d-78d6ab3442ff',
+                    }
                 ],
                 stages: [
-                    { status: 'Processing', timeline: '30-45', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#673AB7' },
-                    { status: 'Shipped', timeline: '20-50', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#FF9800' },
-                    { status: 'Delivered', timeline: '10-20', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fcodinghtml_117796.png?alt=media&token=f92b4e4b-404a-4300-b2e1-56538046c8b5', color: '#607D8B' },
+                    {
+                        status: 'Оценка рисков',
+                        desc: 'Анализ текущих угроз и уязвимостей в системах клиента. Это позволяет выявить слабые места и определить приоритетные области для защиты.',
+                        timeline: '3-7',
+                        color: '#673AB7'
+                    },
+                    {
+                        status: 'Разработка стратегии защиты',
+                        desc: 'Создание комплексного плана мер безопасности, включая выбор технологий и методов защиты, соответствующих потребностям бизнеса.',
+                        timeline: '10-20',
+                        color: '#FF9800'
+                    },
+                    {
+                        status: 'Внедрение мер безопасности',
+                        desc: 'Реализация разработанных стратегий, включая установку программного обеспечения, настройку систем и обучение сотрудников. Этот этап важен для защиты данных и систем.',
+                        timeline: '15-40',
+                        color: '#FF9800'
+                    },
+                    {
+                        status: 'Мониторинг и поддержка',
+                        desc: 'Постоянный мониторинг систем безопасности и обновление мер защиты в ответ на новые угрозы. Включает в себя регулярные отчеты и консультации для клиента.',
+                        timeline: '5-12',
+                        color: '#607D8B'
+                    }
                 ],
                 faq: [
-                    { title: 'Что делать если 1', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '0' },
-                    { title: 'Что делать если 2', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '1' },
-                    { title: 'Что делать если 3', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '2' }
+                    {
+                        title: 'Какой процесс вы используете для оценки безопасности?',
+                        content: 'Мы начинаем с оценки рисков, затем разрабатываем стратегию защиты и внедряем необходимые меры безопасности, включая мониторинг и поддержку систем.',
+                        value: '0'
+                    },
+                    {
+                        title: 'Как долго занимает оценка и внедрение мер безопасности?',
+                        content: 'Время, необходимое для оценки и внедрения мер безопасности, зависит от сложности системы и может варьироваться от нескольких дней до нескольких недель.',
+                        value: '1'
+                    },
+                    {
+                        title: 'Предоставляете ли вы услуги по улучшению существующих систем безопасности?',
+                        content: 'Да, мы можем провести аудит существующих систем безопасности и предложить решения для повышения их эффективности и защиты от новых угроз.',
+                        value: '2'
+                    },
+                    {
+                        title: 'Какова стоимость услуг по кибербезопасности?',
+                        content: 'Стоимость услуг зависит от объема работы и сложности проекта. Мы предлагаем индивидуальные расценки и рекомендуем обсудить ваши требования для получения точной оценки.',
+                        value: '3'
+                    }
                 ],
             }
         },
@@ -736,45 +804,83 @@ export function useServicesView() {
             desc: "SEO и маркетинг включают в себя аудит текущих позиций, разработку стратегии продвижения и реализацию мероприятий для улучшения видимости в поисковых системах. Мы предлагаем полный цикл работы, включая анализ, реализацию и мониторинг результатов.",
             category: "full_cycle",
             serviceInfo: {
-                imageSrc: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Fimages-services%2FSEO.jpg?alt=media&token=90f82766-5042-4189-b52e-c96b6122f520',
-                label: 'Разработка мобильных приложений в Abstergo',
-                desc: 'В Abstergo мы предлагаем профессиональные услуги по разработке мобильных приложений, используя современные технологии и инструменты, такие как Dart и Flutter. Наша команда опытных разработчиков создает высококачественные, производительные и эстетически привлекательные приложения для платформ iOS и Android.',
+                imageSrc: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Fimages-services%2FSEO-2.jpg?alt=media&token=e00ec7f2-f9b1-42c9-af27-46f06e436906',
+                label: 'SEO и маркетинг',
+                desc: 'В Abstergo мы предлагаем профессиональные услуги по SEO и маркетингу, используя современные стратегии и инструменты для увеличения видимости и привлечения целевой аудитории. Наша команда опытных специалистов помогает вам добиться высоких результатов в онлайн-пространстве.',
                 technologies: [
                     {
-                        id: 0,
-                        label: 'Dart',
-                        desc: 'Язык программирования для разработки мобильных приложений и не только...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
-                    },
-                    {
                         id: 1,
-                        label: 'Flutter',
-                        desc: 'Flutter - платформа для разработки кросплатформенных приложений под различные устройства, включая android и ios',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Google Analytics',
+                        desc: 'Google Analytics — это инструмент для анализа посещаемости и поведения пользователей на сайте.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fgoogle-analytics.png?alt=media&token=730f1b47-ad37-49de-b7ed-e5d7e4d05b02'
                     },
                     {
                         id: 2,
-                        label: 'Облачные сервисы',
-                        desc: 'Используем различные облачные сервисы для разработки приложений: AWS, Google cloud, Azure...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Ahrefs',
+                        desc: 'Ahrefs — это инструмент для анализа ссылок, который помогает оценить ссылочный профиль и конкурентоспособность сайта.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fahrefs%20SEO%20Tool.png?alt=media&token=0ceca642-2669-4410-9f40-4a23e69be1c8'
                     },
                     {
                         id: 3,
-                        label: 'Базы данных',
-                        desc: 'В разработке мобильных приложений мы используем различные базы данных MySql, Postgresql, mongodb, supabase...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'SEMrush',
+                        desc: 'SEMrush — это платформа для SEO и контентного маркетинга, которая предоставляет инструменты для анализа ключевых слов и конкурентов.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2FSEMRush%20Icon.png?alt=media&token=411824fe-0656-47b3-8107-2fe76587cdf5'
+                    },
+                    {
+                        id: 4,
+                        label: 'Moz',
+                        desc: 'Moz — это инструмент для SEO-оптимизации, который предлагает данные о поисковых системах и рекомендации по улучшению видимости сайта.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fmoz.png?alt=media&token=843470d4-09f9-4619-b191-67b76e72f6c6'
                     },
                 ],
                 stages: [
-                    { status: 'Processing', timeline: '30-45', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#673AB7' },
-                    { status: 'Shipped', timeline: '20-50', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#FF9800' },
-                    { status: 'Delivered', timeline: '10-20', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fcodinghtml_117796.png?alt=media&token=f92b4e4b-404a-4300-b2e1-56538046c8b5', color: '#607D8B' },
+                    {
+                        status: 'Анализ и аудит',
+                        desc: 'Проведение полного аудита сайта и анализа текущих позиций в поисковых системах для выявления слабых мест и возможностей для роста.',
+                        timeline: '3-5',
+                        color: '#673AB7'
+                    },
+                    {
+                        status: 'Разработка стратегии SEO',
+                        desc: 'Создание комплексного плана по оптимизации сайта, включая выбор ключевых слов, улучшение контента и технические рекомендации.',
+                        timeline: '10-15',
+                        color: '#FF9800'
+                    },
+                    {
+                        status: 'Внедрение и оптимизация',
+                        desc: 'Реализация разработанной стратегии, включая оптимизацию контента, настройку метатегов и внутренней перелинковки.',
+                        timeline: '15-30',
+                        color: '#FF9800'
+                    },
+                    {
+                        status: 'Мониторинг и отчетность',
+                        desc: 'Постоянный мониторинг позиций сайта и предоставление регулярных отчетов о результатах и рекомендациях для дальнейшего улучшения.',
+                        timeline: '5-12',
+                        color: '#607D8B'
+                    }
                 ],
                 faq: [
-                    { title: 'Что делать если 1', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '0' },
-                    { title: 'Что делать если 2', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '1' },
-                    { title: 'Что делать если 3', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '2' }
-                ],
+                    {
+                        title: 'Какой процесс вы используете для SEO?',
+                        content: 'Мы начинаем с аудита сайта и анализа текущих позиций, затем разрабатываем стратегию SEO и внедряем необходимые меры, включая мониторинг результатов.',
+                        value: '0'
+                    },
+                    {
+                        title: 'Как долго занимает оптимизация сайта?',
+                        content: 'Время, необходимое для оптимизации, зависит от состояния сайта и может варьироваться от нескольких недель до нескольких месяцев.',
+                        value: '1'
+                    },
+                    {
+                        title: 'Предоставляете ли вы услуги по улучшению текущих стратегий SEO?',
+                        content: 'Да, мы можем провести аудит существующих стратегий и предложить улучшения для повышения видимости в поисковых системах.',
+                        value: '2'
+                    },
+                    {
+                        title: 'Какова стоимость услуг по SEO и маркетингу?',
+                        content: 'Стоимость услуг зависит от объема работы и сложности проекта. Мы предлагаем индивидуальные расценки и рекомендуем обсудить ваши требования для получения точной оценки.',
+                        value: '3'
+                    }
+                ]
             }
         },
         {
@@ -786,44 +892,83 @@ export function useServicesView() {
             category: "full_cycle",
             serviceInfo: {
                 imageSrc: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Fimages-services%2FAnalytics.jpg?alt=media&token=088f881f-825b-4096-9ec0-fe825d450611',
-                label: 'Разработка мобильных приложений в Abstergo',
-                desc: 'В Abstergo мы предлагаем профессиональные услуги по разработке мобильных приложений, используя современные технологии и инструменты, такие как Dart и Flutter. Наша команда опытных разработчиков создает высококачественные, производительные и эстетически привлекательные приложения для платформ iOS и Android.',
+                label: 'Обработка данных и аналитика',
+                desc: 'Мы предлагаем профессиональные услуги по обработке данных и аналитике, используя современные методы и инструменты для извлечения ценной информации и принятия обоснованных решений. Наша команда экспертов помогает вам управлять данными и делать выводы на их основе.',
                 technologies: [
                     {
                         id: 0,
-                        label: 'Dart',
-                        desc: 'Язык программирования для разработки мобильных приложений и не только...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Python',
+                        desc: 'Язык программирования, часто используемый для анализа данных и разработки аналитических решений.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fpython.png?alt=media&token=caf292f9-d471-4ae5-a806-8793f6eb0f7d'
                     },
                     {
                         id: 1,
-                        label: 'Flutter',
-                        desc: 'Flutter - платформа для разработки кросплатформенных приложений под различные устройства, включая android и ios',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'R',
+                        desc: 'Язык программирования и среда для статистических вычислений и графики.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fr.png?alt=media&token=fc2619fe-4376-4b46-a6be-ba1e99249c98'
                     },
                     {
                         id: 2,
-                        label: 'Облачные сервисы',
-                        desc: 'Используем различные облачные сервисы для разработки приложений: AWS, Google cloud, Azure...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'SQL',
+                        desc: 'Язык структурированных запросов, используемый для работы с базами данных.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fsql.png?alt=media&token=7c9ecb16-02cc-466b-a3a2-e9120cc65a14'
                     },
                     {
                         id: 3,
-                        label: 'Базы данных',
-                        desc: 'В разработке мобильных приложений мы используем различные базы данных MySql, Postgresql, mongodb, supabase...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Power BI',
+                        desc: 'Инструмент для визуализации данных и создания отчетов.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2FPower%20Bi.png?alt=media&token=8425aad7-a724-4b94-92aa-ed1b40856594'
                     },
+                    {
+                        id: 4,
+                        label: 'Tableau',
+                        desc: 'Инструмент для визуализации данных, помогающий создавать интерактивные дашборды.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2FTableau.png?alt=media&token=4e4d1d3a-9a91-455c-8ab3-f63ddf343b71'
+                    }
                 ],
                 stages: [
-                    { status: 'Processing', timeline: '30-45', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#673AB7' },
-                    { status: 'Shipped', timeline: '20-50', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#FF9800' },
-                    { status: 'Delivered', timeline: '10-20', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fcodinghtml_117796.png?alt=media&token=f92b4e4b-404a-4300-b2e1-56538046c8b5', color: '#607D8B' },
+                    {
+                        status: 'Сбор данных',
+                        desc: 'Сбор необходимых данных из различных источников, включая базы данных, веб-сайты и внешние API для подготовки к анализу.',
+                        timeline: '5-10',
+                        color: '#673AB7'
+                    },
+                    {
+                        status: 'Анализ данных',
+                        desc: 'Применение статистических методов и инструментов для анализа собранных данных, выявление закономерностей и трендов.',
+                        timeline: '10-20',
+                        color: '#FF9800'
+                    },
+                    {
+                        status: 'Визуализация',
+                        desc: 'Создание визуальных представлений данных с помощью графиков и диаграмм для облегчения восприятия и интерпретации информации.',
+                        timeline: '5-15',
+                        color: '#FF9800'
+                    },
+                    {
+                        status: 'Отчетность и рекомендации',
+                        desc: 'Подготовка отчетов на основе анализа данных с рекомендациями для улучшения бизнес-процессов и стратегий.',
+                        timeline: '5-10',
+                        color: '#607D8B'
+                    }
                 ],
                 faq: [
-                    { title: 'Что делать если 1', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '0' },
-                    { title: 'Что делать если 2', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '1' },
-                    { title: 'Что делать если 3', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '2' }
-                ],
+                    {
+                        title: 'Какой процесс вы используете для обработки данных?',
+                        content: 'Мы начинаем с сбора данных, затем проводим их анализ и визуализацию, и, в конечном итоге, предоставляем отчеты и рекомендации.',
+                        value: '0'
+                    },
+                    {
+                        title: 'Как долго занимает обработка данных?',
+                        content: 'Время, необходимое для обработки данных, зависит от объема данных и сложности анализа, и может варьироваться от нескольких дней до нескольких недель.',
+                        value: '1'
+                    },
+                    {
+                        title: 'Предоставляете ли вы услуги по обработке существующих наборов данных?',
+                        content: 'Да, мы можем провести аудит существующих данных и предложить решения для их более эффективной обработки и анализа.',
+                        value: '2'
+                    }
+                ]
             }
         },
         {
@@ -835,44 +980,71 @@ export function useServicesView() {
             category: "full_cycle",
             serviceInfo: {
                 imageSrc: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Fimages-services%2FBots.jpg?alt=media&token=b63791ae-bb98-450d-8ed4-1d94286e78a1',
-                label: 'Разработка мобильных приложений в Abstergo',
-                desc: 'В Abstergo мы предлагаем профессиональные услуги по разработке мобильных приложений, используя современные технологии и инструменты, такие как Dart и Flutter. Наша команда опытных разработчиков создает высококачественные, производительные и эстетически привлекательные приложения для платформ iOS и Android.',
+                label: 'Разработка чат-ботов в Abstergo',
+                desc: 'В Abstergo мы предлагаем профессиональные услуги по разработке чат-ботов для платформ, таких как Telegram, Viber и VK. Наша команда создает эффективные и удобные решения для автоматизации общения с клиентами.',
                 technologies: [
                     {
                         id: 0,
-                        label: 'Dart',
-                        desc: 'Язык программирования для разработки мобильных приложений и не только...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Node.js',
+                        desc: 'Node.js — это платформа для серверного программирования на JavaScript, популярная для разработки чат-ботов.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fnode.png?alt=media&token=590724a9-2a9b-43c6-a4d3-e9a35899e381'
                     },
                     {
                         id: 1,
-                        label: 'Flutter',
-                        desc: 'Flutter - платформа для разработки кросплатформенных приложений под различные устройства, включая android и ios',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Python',
+                        desc: 'Python — язык программирования, часто используемый для создания чат-ботов благодаря своей простоте и множеству библиотек.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2Fpython.png?alt=media&token=caf292f9-d471-4ae5-a806-8793f6eb0f7d'
                     },
                     {
                         id: 2,
-                        label: 'Облачные сервисы',
-                        desc: 'Используем различные облачные сервисы для разработки приложений: AWS, Google cloud, Azure...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Telegram API',
+                        desc: 'API Telegram позволяет интегрировать чат-ботов с мессенджером Telegram для автоматизации общения.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2FSquare%20Telegram.png?alt=media&token=5a8b04cd-43e4-4126-8b35-48afdbfe62f8'
                     },
                     {
                         id: 3,
-                        label: 'Базы данных',
-                        desc: 'В разработке мобильных приложений мы используем различные базы данных MySql, Postgresql, mongodb, supabase...',
-                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/seamonkey_browser_logo_icon_152961.ico?alt=media&token=6948a145-b9a4-4427-9d3a-f28d3d13fd2a',
+                        label: 'Viber API',
+                        desc: 'API Viber позволяет разработать ботов, которые могут взаимодействовать с пользователями в приложении Viber.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2FViber.jpg?alt=media&token=3ab10e9a-a9c1-4dbe-a6c7-af57e72664e7'
                     },
+                    {
+                        id: 4,
+                        label: 'VK API',
+                        desc: 'API ВКонтакте предоставляет возможности для создания ботов, которые могут общаться с пользователями в VK.',
+                        icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/PROFILE-SITE%2Ficons-services%2FVK%20Social%20Icon.png?alt=media&token=c774161d-bd71-445c-97d6-0d4fb4f699ea'
+                    }
                 ],
                 stages: [
-                    { status: 'Processing', timeline: '30-45', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#673AB7' },
-                    { status: 'Shipped', timeline: '20-50', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2F1490889638-app-store_82517.png?alt=media&token=0ca0785a-cd56-4694-877a-00bb5ef0d9cd', color: '#FF9800' },
-                    { status: 'Delivered', timeline: '10-20', icon: 'https://firebasestorage.googleapis.com/v0/b/sds-publisher.appspot.com/o/icons%2Fcodinghtml_117796.png?alt=media&token=f92b4e4b-404a-4300-b2e1-56538046c8b5', color: '#607D8B' },
+                    {
+                        status: 'Анализ требований',
+                        desc: 'Сбор и анализ требований клиентов для понимания функционала и особенностей чат-бота.',
+                        timeline: '5-10',
+                        color: '#673AB7'
+                    },
+                    {
+                        status: 'Разработка сценариев',
+                        desc: 'Создание сценариев взаимодействия пользователей с ботом, включая обработку различных запросов и ответов.',
+                        timeline: '10-15',
+                        color: '#FF9800'
+                    },
+                    {
+                        status: 'Программирование и тестирование',
+                        desc: 'Программирование функционала чат-бота и его тестирование на различных платформах, таких как Telegram и Viber.',
+                        timeline: '15-25',
+                        color: '#FF9800'
+                    },
+                    {
+                        status: 'Внедрение и поддержка',
+                        desc: 'Запуск чат-бота в рабочую среду и предоставление технической поддержки для пользователей.',
+                        timeline: '5-10',
+                        color: '#607D8B'
+                    }
                 ],
                 faq: [
-                    { title: 'Что делать если 1', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '0' },
-                    { title: 'Что делать если 2', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '1' },
-                    { title: 'Что делать если 3', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', value: '2' }
-                ],
+                    { title: 'Какой процесс вы используете для разработки чат-ботов?', content: 'Мы начинаем с анализа требований, затем разрабатываем сценарии и программируем бота, после чего проводим тестирование и внедряем его в выбранную платформу.', value: '0' },
+                    { title: 'Как долго занимает разработка чат-бота?', content: 'Время разработки зависит от сложности проекта и может занять от нескольких дней до нескольких недель.', value: '1' },
+                    { title: 'Предоставляете ли вы услуги по обновлению существующих чат-ботов?', content: 'Да, мы можем обновить и улучшить уже существующих чат-ботов, добавляя новые функции и улучшая их производительность.', value: '2' }
+                ]
             }
         },
 
