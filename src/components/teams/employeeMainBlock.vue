@@ -9,6 +9,7 @@
         />
         <previewSummaryBlock 
         :main-id="summaryId"
+        :data="widgetData?.about"
         />
     </section>
 </template>
@@ -18,7 +19,7 @@ import previewImageBlock from '@/components/teams/previewImageBlock.vue';
 import previewSummaryBlock from '@/components/teams/previewSummaryBlock.vue';
 import { useMainTeamsStore } from '@/stores/teams/mainStore';
 import { useAnimTeamsStore } from '@/stores/teams/animStore';
-import { onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 
@@ -48,7 +49,7 @@ watch(() => route.params['id'], (newValue, oldValue) => {
     }
 })
 
-onMounted(async () => {
+onMounted(() => {
     widgetData.value = findWidgetData(route.params['id'])
 });
 </script>
@@ -61,8 +62,8 @@ onMounted(async () => {
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 50px;
-    opacity: 0;
+    width: 1200px;
+    opacity: 1;
     height: 68%;
     border: 1px solid var(--base-border-color);
     border-radius: var(--base-rounded);
@@ -70,13 +71,19 @@ onMounted(async () => {
     transition: width 0.3s;
 }
 #teams-preview-block {
-    scale: 0.4;
+    /* scale: 0.4;
     opacity: 0;
-    transform: translate(-350px, 0px);
+    transform: translate(-350px, 0px); */
+    scale: 1;
+    opacity: 1;
+    transform: translate(0px, 0px);
 }
 #teams-summary-block {
-    scale: 0.4;
+    /* scale: 0.4;
     opacity: 0;
-    transform: translate(350px, 0px);
+    transform: translate(350px, 0px); */
+    scale: 1;
+    opacity: 1;
+    transform: translate(0px, 0px);
 }
 </style>

@@ -147,7 +147,6 @@ export const useAnimTeamsStore = defineStore('animTeamsStore', () => {
         const { w: width, h: height } = { ...sizeConfDefault, ...size };
         const block = document.getElementById(animationIds.infoSection[0])
         if(typeof width === 'number') {
-            console.log('WORK');
             block.style.width = `${width}px`;
         }
         if(typeof height === 'number') {

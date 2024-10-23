@@ -1,6 +1,6 @@
 <!-----------------------------------------------------------TEMPLATE----------------------------------------------------------------------------->
 <template>
-    <div :id="props.mainId" class="preview-block">
+    <div class="preview-block">
         <div class="preview-block__fg">
             <div class="title-block mt-auto mr-auto mb-6 px-6 mx-4">
                 <h2 id="tm-pr-name">{{ props.data?.fullname }}</h2>
@@ -21,21 +21,13 @@
 <!-----------------------------------------------------------SCRIPTS----------------------------------------------------------------------------->
 
 <script setup>
-import gsap from 'gsap';
-import { ref, defineProps, watch, onMounted, nextTick } from 'vue';
+import { defineProps, watch, onMounted } from 'vue';
 import { useAnimTeamsStore } from '@/stores/teams/animStore';
-import { images } from '@/assets/preview';
 import { useRoute } from 'vue-router';
-// #######################################   COMPOSABLES   #######################################
-const animStore = useAnimTeamsStore();
+import { usePreviewImage } from '@/composables/teams/previewImage';
 
 // #######################################   PROPS   #######################################
 const props = defineProps({
-    mainId: {
-        type: String,
-        required: false,
-        default: null,
-    },
     data: {
         type: Object,
         required: false,
@@ -43,73 +35,26 @@ const props = defineProps({
     }
 });
 
-// #######################################   DATA   #######################################
-const lnkBtnTitle = ref('');
-const imageSrc = ref('');
-const isLoadingImg = ref(false);
+// #######################################   COMPOSABLES   #######################################
+const animStore = useAnimTeamsStore();
+const { 
+    lnkBtnTitle,
+    imageSrc,
+    isLoadingImg,
+    initInnerAnimation,
+    setDefaultStylesInnerItems,
+    updatePreviewData,
+} = usePreviewImage();
 
 
 // #######################################   COMPOSABLES   #######################################
 const route = useRoute();
 
 
-// #######################################   METHODS   #######################################
-
-// Сбрасывает основные данные компонента (например при именении роута)
-function resetDataComponent() {
-    lnkBtnTitle.value = '';
-    imageSrc.value = '';
-    isLoadingImg.value = false;
-}
-
-function animateLnkBtn() {
-    lnkBtnTitle.value = '';
-    animStore.initTextAnimation('Связаться', (output) => lnkBtnTitle.value += output, { duration: 80 });
-}
-
-// Стартовая анимация вложенных элементов при начальной отрисовке компонента
-async function initInnerAnimation(duration=0.18, delay=0.4) {
-    try {
-        let dur = duration;
-        let del = delay;
-        const tl = gsap.timeline();
-        await tl.to('#tm-pr-name', { duration: dur, delay: del, opacity: 1, transform: 'translateX(0px)' });
-        await tl.to('#tm-pr-jobtitle', { duration: dur, opacity: 1, transform: 'translateX(0px)' });
-        await tl.to('#tm-pr-lnkbtn', { duration: dur, opacity: 1, transform: 'translateX(0px)' });
-        animateLnkBtn();
-    } catch (err) {
-        throw err;
-    }
-}
-
-// Установить значение стиелей по умолчанию для внутренних элементов превью-блока
-function setDefaultStylesInnerItems() {
-    let innerElements = ['tm-pr-name', 'tm-pr-jobtitle', 'tm-pr-lnkbtn']
-    innerElements.forEach((el) => {
-        const docEl = document.getElementById(el);
-        docEl.style.position = 'relative';
-        docEl.style.transform = 'translateX(150px)';
-        docEl.style.opacity = 0;
-    });
-}
-
-// Функция отрабатывает в момент обновления или первичной инициализации данных виджета
-async function updatePreviewData() {
-    try {
-        resetDataComponent();
-        isLoadingImg.value = true;
-        await nextTick();
-        imageSrc.value = importImage(images[props.data?.image]);
-    } finally {
-        isLoadingImg.value = false;
-    }
-}
-
 // #######################################   WATCH   #######################################
 // Внутренние анимации выпоняются после того как завершится анимация появления главного компонента
 watch(() => animStore.animationExecuteState, (newValue) => {
     if(newValue === false) {
-        console.log('Animate');
         setDefaultStylesInnerItems();
         initInnerAnimation(0.18, 0);
     }
@@ -123,14 +68,8 @@ watch(() => route.params['id'], async (newVal, oldVal) => {
     }
 })
 
-// Импорт изображения и корректное создание его URl
-function importImage(imageName) {
-    return new URL(`../../assets/preview/${imageName}`, import.meta.url).href;
-}
-
 // #######################################   HOOKS   #######################################
 onMounted(async () => {
-    console.log('MOUNTED');
     updatePreviewData();
 });
 </script>

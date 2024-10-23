@@ -1,5 +1,5 @@
 <template>
-    <div :id="props.mainId" class="summary-block ml-auto pr-5 mr-2 py-3">
+    <div class="summary-block ml-auto pr-5 mr-2 py-3">
         <!-- Заголовок "Обо мне" -->
         <h1 class="summary-block__title">Обо мне</h1>
 
@@ -17,22 +17,14 @@
 
         <!-- Описание -->
         <div class="summary-block__descr">
-            <span class="block font-bold light">Серверная часть:</span>
-            <span class="ml-2 inline-block">
-                Разрабатываю надежные серверные решения с использованием современных технологий. Это включает в
-                себя
-                создание API, работу с базами данных и интеграцию с внешними сервисами. Я уделяю особое внимание
-                безопасности данных
-                и производительности приложений.
-            </span>
-
-            <span class="block font-bold light mt-2">Клиентская часть:</span>
-            <span class="ml-2 inline-block">
-                Cоздаю красивые и интуитивно понятные интерфейсы, которые обеспечивают отличный пользовательский
-                опыт.
-                Использую актуальные фреймворки, такие как React и Vue.js, чтобы сделать ваши сайты адаптивными и быстро
-                загружаемыми.
-            </span>
+            <div 
+            class="descr-chunk w-full h-max" 
+            v-for="chunk in (props.data?.descriptionBlock ?? [])" 
+            :key=chunk.title
+            >
+                <span class="block font-bold light">{{ chunk.title }}:</span>
+                <span class="ml-2 inline-block">{{ chunk.description }}</span>
+            </div>
         </div>
 
         <!-- Сервисы -->
@@ -40,7 +32,7 @@
 
         <div class="summary-block__services mb-5">
             <!-- Ячейка сервиса -->
-            <div class="service-item px-3 py-2" v-for="service in services" :key="service.title">
+            <div class="service-item px-3 py-2" v-for="service in (props.data?.services || [])" :key="service.title">
                 <svg-icon 
                 class="service-item__icon" 
                 type="mdi" 
@@ -48,40 +40,28 @@
                 ></svg-icon>
 
                 <h3 class="service-item__title">{{ service.title }}</h3>
-                <p class="service-item__summary px-1">{{ service.summary }}</p>
+                <p class="service-item__summary px-1">{{ service.description }}</p>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref, defineProps } from 'vue';
+import { defineProps, computed } from 'vue';
 import SvgIcon from '@jamescoyle/vue-icon';
-import { mdiRocketLaunchOutline, mdiCodeTags, mdiDatabaseOutline, mdiSecurity } from '@mdi/js';
 
 const props = defineProps({
-    mainId: {
-        type: String,
+    data: {
+        type: Object,
         required: false,
         default: null,
-    },
+    }
 });
-
-const tags = ref([
-    { label: '22 года' },
-    { label: 'Full-stack' },
-    { label: 'опыт 3 года' },
-]);
-
-const services = ref([
-    { icon: mdiCodeTags, title: 'Разработка', summary: 'Создание отзывчивых и интерактивных веб-приложений. Поддержка существующих проектов' },
-    { icon: mdiRocketLaunchOutline, title: 'Оптимизация', summary: 'Проведение тестирования приложений. Выявление слабых мест в программе для повышения производительности' },
-    { icon: mdiDatabaseOutline, title: 'Базы данных', summary: 'SSL-Сертификация, настройка, развертывание и поддержка систем упраления базами данных' },
-    { icon: mdiSecurity, title: 'Защита данных', summary: 'Выявление уязвимых мест в приложениях. Внедрение современных технологий защиты данных.' },
-]);
-
-
-
+const tags = computed(() => {
+    let localTags = [];
+    if(props.data?.tags) localTags = [...props.data?.tags];
+    return localTags.map((tag) => ({ label: tag }));
+});
 </script>
 
 <style scoped>
@@ -125,6 +105,9 @@ const services = ref([
     color: var(--base-fg);
     font-family: var(--font);
     cursor: default;
+}
+.descr-chunk + .descr-chunk {
+    margin-top: 1rem;
 }
 
 /* БЛОК СЕРВИСОВ */
