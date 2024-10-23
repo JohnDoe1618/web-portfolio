@@ -24,6 +24,15 @@ export function useTeamsComposable() {
 
 
     // ##############################   METHODS   ###################################
+    // Поиск данных виджета по его ID и заполнение объекта 
+    function filledWidgetData(id) {
+        try {
+            mainTeamStore.widgetData = mainTeamStore.teams.find((value) => value.widget == id);
+        } catch (err) {
+            throw err;
+        }
+    }
+
     // Выбрать предыдущий виджет
     async function choosePrevWidget() {
         if (currentWidget.value - 1 <= 0) {
@@ -79,5 +88,6 @@ export function useTeamsComposable() {
         showSection,
         hideSection,
         initCurrentWidget,
+        filledWidgetData,
     };
 }

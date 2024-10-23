@@ -95,8 +95,8 @@ export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
                 ],
             }
         },
-    ])
-
+    ]);
+    const widgetData = ref(null);
 
     // Actions
     function debounceWatcher(func=(newVal, oldVal) => {}, delay=200) {
@@ -111,6 +111,7 @@ export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
 
     return {
         teams,
+        widgetData,
         debounceWatcher,
     }
 }) 

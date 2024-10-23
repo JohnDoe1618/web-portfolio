@@ -5,11 +5,11 @@
     >
         <previewImageBlock 
         :main-id="previewId"
-        :data="widgetData?.preview"
+        :data="mainTeamsStore.widgetData?.preview"
         />
         <previewSummaryBlock 
         :main-id="summaryId"
-        :data="widgetData?.about"
+        :data="mainTeamsStore.widgetData?.about"
         />
     </section>
 </template>
@@ -17,41 +17,28 @@
 <script setup>
 import previewImageBlock from '@/components/teams/previewImageBlock.vue';
 import previewSummaryBlock from '@/components/teams/previewSummaryBlock.vue';
-import { useMainTeamsStore } from '@/stores/teams/mainStore';
 import { useAnimTeamsStore } from '@/stores/teams/animStore';
-import { computed, onMounted, ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { useMainTeamsStore } from '@/stores/teams/mainStore';
+import { onMounted, watch } from 'vue';
 
-
+// #####################################  COMPOSABLES  ###################################
 const animStore = useAnimTeamsStore();
-const mainTeamStore = useMainTeamsStore();
+const mainTeamsStore = useMainTeamsStore();
+
+
+// #####################################  DATA  ###################################
 const { animationIds: { infoSection, preview, summary } } = animStore;
 const previewId = preview[0];
 const summaryId = summary[0];
 const infoSectionId = infoSection[0];
-const route = useRoute();
 
-const widgetData = ref(null);
-
-// Получение данных открытого виджета
-function findWidgetData(id) {
-    try {
-        return mainTeamStore.teams.find((value) => value.widget == id)
-    } catch (err) {
-        throw err;
-    }
-}
-
-// Отслеживание изменения
-watch(() => route.params['id'], (newValue, oldValue) => {
-    if(!!newValue && !!oldValue) {
-        widgetData.value = findWidgetData(+newValue);
-    }
-})
+watch(() => mainTeamsStore.widgetData, (data) => {
+    console.log('WATCH', data);
+});
 
 onMounted(() => {
-    widgetData.value = findWidgetData(route.params['id'])
-});
+})
+
 </script>
 
 

@@ -3,7 +3,7 @@ import { ref, nextTick } from 'vue';
 import gsap from 'gsap';
 
 
-export function usePreviewImage() {
+export function usePreviewImage(props) {
     // #######################################   DATA   #######################################
     const lnkBtnTitle = ref('');
     const imageSrc = ref('');

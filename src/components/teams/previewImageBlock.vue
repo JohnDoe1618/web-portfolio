@@ -44,7 +44,7 @@ const {
     initInnerAnimation,
     setDefaultStylesInnerItems,
     updatePreviewData,
-} = usePreviewImage();
+} = usePreviewImage(props);
 
 
 // #######################################   COMPOSABLES   #######################################
@@ -53,20 +53,20 @@ const route = useRoute();
 
 // #######################################   WATCH   #######################################
 // Внутренние анимации выпоняются после того как завершится анимация появления главного компонента
-watch(() => animStore.animationExecuteState, (newValue) => {
-    if(newValue === false) {
-        setDefaultStylesInnerItems();
-        initInnerAnimation(0.18, 0);
-    }
-});
+// watch(() => animStore.animationExecuteState, (newValue) => {
+//     if(newValue === false) {
+//         setDefaultStylesInnerItems();
+//         initInnerAnimation(0.18, 0);
+//     }
+// });
 
 // Изменение виджета. Если виджет меняется, то у ранее открытого виджета сбрасываются данные и откатываются стили для повторного применения анимаций
-watch(() => route.params['id'], async (newVal, oldVal) => {
-    if(!!newVal && !!oldVal) {
-        setDefaultStylesInnerItems();
-        updatePreviewData();
-    }
-})
+// watch(() => route.params['id'], async (newVal, oldVal) => {
+//     if(!!newVal && !!oldVal) {
+//         setDefaultStylesInnerItems();
+//         updatePreviewData();
+//     }
+// })
 
 // #######################################   HOOKS   #######################################
 onMounted(async () => {

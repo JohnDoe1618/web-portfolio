@@ -17,39 +17,41 @@
 
 <script setup>
 import buttonSlide from '@/components/teams/buttonSlide.vue';
-import { useAnimTeamsStore } from '@/stores/teams/animStore';
 import { onMounted, ref, watch } from 'vue';
-import { useMainTeamsStore } from '@/stores/teams/mainStore';
-import { RouterView, useRoute, useRouter } from 'vue-router';
+import { RouterView, useRoute } from 'vue-router';
 import { useTeamsComposable } from '@/composables/teams';
+import { useMainTeamsStore } from '@/stores/teams/mainStore';
 
 // #####################################  COMPOSABLES  ###################################
 const route = useRoute();
-const router = useRouter();
+const mainTeamsStore = useMainTeamsStore();
+const teamsComposable = useTeamsComposable()
 
-const mainTeamStore = useMainTeamsStore();
-
-
-const { adaptiveInfoSection, debounce } = useAnimTeamsStore();
 
 // #####################################  DATA  ###################################
 
 
 // #####################################  METHODS  ###################################
+const { chooseNextWidget, choosePrevWidget, initCurrentWidget, filledWidgetData } = teamsComposable;
+const { debounceWatcher } = mainTeamsStore;
 
-
-const { chooseNextWidget, choosePrevWidget, initCurrentWidget } = useTeamsComposable();
-
-// let timerId;
-// watch(() => route.params['id'], mainTeamStore.debounceWatcher((newVal, oldVal) => {
-//     console.log(newVal, oldVal);
-// }));
+// #####################################  WATCHERS  ###################################
+// Отслеживание изменения параметра маршрута id
+watch(() => route.params['id'], debounceWatcher((newValue, oldValue) => {
+    if(!!newValue && !!oldValue) {
+        filledWidgetData(+newValue);
+    }
+}))
 
 
 // #####################################  HOOKS  ###################################
 onMounted(async () => {
+    // Получение данных виджета при монитировании
+    filledWidgetData(route.params['id'])
+
     // Инициализация номера текущего виджета
     initCurrentWidget();
+
     // Провяление анимаций
     // await showSection();
 
