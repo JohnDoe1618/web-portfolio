@@ -21,6 +21,7 @@ export function usePreviewImage() {
         isLoadingImg.value = false;
     }
 
+    // Применение анимации для кнопки "Связаться"
     function animateLnkBtn() {
         lnkBtnTitle.value = '';
         animStore.initTextAnimation('Связаться', (output) => lnkBtnTitle.value += output, { duration: 80 });
