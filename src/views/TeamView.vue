@@ -1,43 +1,66 @@
 <template>
     <div class="team-view">
-        <section :id="infoSectionId" class="employee-info-block">
-            <previewImageBlock :id="previewId" :main-id="previewId"/>
-            <previewSummaryBlock :id="summaryId" :main-id="summaryId"/>
-        </section>
+        <buttonSlide 
+        icon-direction="left"
+        @click="() => chooseAnotherWidget({ direction: 'less' })"
+        />
+
+        <RouterView />
+
+        <buttonSlide 
+        icon-direction="right"
+        @click="() => chooseAnotherWidget({ direction: 'greater' })"
+        />
     </div>
 </template>
 
 
 <script setup>
-import previewImageBlock from '@/components/teams/previewImageBlock.vue';
-import previewSummaryBlock from '@/components/teams/previewSummaryBlock.vue';
-import { useAnimTeamsStore } from '@/stores/teams/animStore';
-import { onMounted } from 'vue';
+import buttonSlide from '@/components/teams/buttonSlide.vue';
+import { onMounted, ref, watch } from 'vue';
+import { RouterView, useRoute } from 'vue-router';
+import { useTeamsComposable } from '@/composables/teams';
+import { useMainTeamsStore } from '@/stores/teams/mainStore';
+import useAnimationTeams from '@/composables/teams/animation';
 
-const animStore = useAnimTeamsStore()
-const { previewId, summaryId, infoSectionId } = animStore;
+// #####################################  COMPOSABLES  ###################################
+const route = useRoute();
+const mainTeamsStore = useMainTeamsStore();
+const teamsComposable = useTeamsComposable()
 
-const { executeAllTeamsAnimation, infoSectionAnim, adaptiveInfoSection, debounce } = useAnimTeamsStore()
+
+// #####################################  DATA  ###################################
+
+
+// #####################################  METHODS  ###################################
+const { chooseAnotherWidget, initCurrentWidget, filledWidgetData } = teamsComposable;
+const { debounceWatcher } = mainTeamsStore;
+const { showSection } = useAnimationTeams();
+
+// #####################################  WATCHERS  ###################################
+// Отслеживание изменения параметра маршрута id
+watch(() => route.params['id'], debounceWatcher((newValue, oldValue) => {
+    if(!!newValue && !!oldValue) {
+        filledWidgetData(+newValue);
+    }
+}))
+
+
+// #####################################  HOOKS  ###################################
 onMounted(async () => {
-    // Провяление анимаций
-    await infoSectionAnim(infoSectionId, { delay: 0.3, duration: 0.2 });
-    await executeAllTeamsAnimation([
-        { id: previewId, config: { delay: 100, duration: 0.4, scale: 1, opacity: 1, transform: { x: 0, y: 0 } } },
-        { id: summaryId, config: { delay: 100, duration: 0.4, scale: 1, opacity: 1, transform: { x: 0, y: 0 } } },
-    ]);
+    // Получение данных виджета при монитировании
+    filledWidgetData(route.params['id'])
 
-    // // Ичезновение 
-    // setTimeout(async () => {
-    //     await executeAllTeamsAnimation([
-    //         { id: previewId.value, config: { delay: 0, duration: 0.4, scale: 0, opacity: 0, transform: { x: -350, y: 0 } } },
-    //         { id: summaryId.value, config: { delay: 0, duration: 0.4, scale: 0, opacity: 0, transform: { x: 350, y: 0 } } },
-    //     ])
-    //     await infoSectionAnim(infoSectionId.value, { delay: 0.2, duration: .4, isFade: true, width: 50, opacity: 0 });
-    // }, 3400)
-    console.log(window.outerHeight);
-    window.addEventListener('resize', debounce((e) => {
-        adaptiveInfoSection(e.target.outerWidth, e.target.outerHeight);
-    }, 100));
+    // Инициализация номера текущего виджета
+    initCurrentWidget();
+
+    // Анимация отображения виджета с уже полученными данными
+    showSection();
+
+    // Адаптив
+    // window.addEventListener('resize', debounce((e) => {
+    //     adaptiveInfoSection(e.target.outerWidth, e.target.outerHeight);
+    // }, 100));
 });
 </script>
 
@@ -47,32 +70,8 @@ onMounted(async () => {
     overflow: hidden;
     height: calc(var(--router-layout-height) + 1vh);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-.employee-info-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 50px;
-    opacity: 0;
-    height: 68%;
-    border: 1px solid var(--base-border-color);
-    border-radius: var(--base-rounded);
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
-    transition: width 0.3s;
-}
-#teams-preview-block {
-    scale: 0.4;
-    opacity: 0;
-    transform: translate(-350px, 0px);
-}
-#teams-summary-block {
-    scale: 0.4;
-    opacity: 0;
-    transform: translate(350px, 0px);
+    gap: 0.8rem;
 }
 </style>

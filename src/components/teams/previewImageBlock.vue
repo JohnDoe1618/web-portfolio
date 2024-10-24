@@ -1,75 +1,53 @@
 <!-----------------------------------------------------------TEMPLATE----------------------------------------------------------------------------->
 <template>
-    <div :id="props.mainId" class="preview-block">
+    <div :id="previewId" class="preview-block">
         <div class="preview-block__fg">
             <div class="title-block mt-auto mr-auto mb-6 px-6 mx-4">
-                <h2 id="tm-pr-name">Эвери Владислав</h2>
-                <h4 id="tm-pr-jobtitle" class="ml-3 mb-auto mt-3">Full-stack разработчик</h4>
+                <h2 id="tm-pr-name">{{ props.data?.fullname }}</h2>
+                <h4 id="tm-pr-jobtitle" class="ml-3 mb-auto mt-3">{{ props.data?.jobTitle }}</h4>
                 <Button 
                 id="tm-pr-lnkbtn"
                 class="contact-btn " 
-                :label="lnkBtnTitle" 
+                :label="mainTeamsStore.lnkBtn.value" 
                 outlined 
                 severity="secondary" 
                 />
             </div>
         </div>
-        <img class="preview-block__image" src="../../assets//preview/A__-fotor-bg-remover-202410111749.png" alt="Preview Image">
+        <img v-if="!isLoadingImg" class="preview-block__image" :src="mainTeamsStore.previewImageSrc" alt="Preview Image">
     </div>
 </template>
 
 <!-----------------------------------------------------------SCRIPTS----------------------------------------------------------------------------->
 
 <script setup>
-import gsap from 'gsap';
-import { ref, defineProps, watch } from 'vue';
-import { useAnimTeamsStore } from '@/stores/teams/animStore';
-// #######################################   COMPOSABLES   #######################################
-const animStore = useAnimTeamsStore();
-
+import { defineProps, watch, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import { usePreviewImage } from '@/composables/teams/previewImage';
+import { useMainTeamsStore } from '@/stores/teams/mainStore';
 
 // #######################################   PROPS   #######################################
 const props = defineProps({
-    mainId: {
-        type: String,
+    data: {
+        type: Object,
         required: false,
         default: null,
-    },
+    }
 });
+
+// #######################################   COMPOSABLES   #######################################
+const mainTeamsStore = useMainTeamsStore();
+const { 
+    isLoadingImg,
+    initInnerAnimation,
+    setDefaultStylesInnerItems,
+} = usePreviewImage(props);
+const route = useRoute();
+
 
 // #######################################   DATA   #######################################
-const lnkBtnTitle = ref('');
-
-
-
-// #######################################   METHODS   #######################################
-
-
-// Стартовая анимация вложенных элементов при начальной отрисовке компонента
-async function initInnerAnimation(duration=0.18, delay=0.4) {
-    try {
-        let dur = duration;
-        let del = delay;
-        const tl = gsap.timeline();
-        await tl.to('#tm-pr-name', { duration: dur, delay: del, opacity: 1, transform: 'translateX(0px)' });
-        await tl.to('#tm-pr-jobtitle', { duration: dur, opacity: 1, transform: 'translateX(0px)' });
-        await tl.to('#tm-pr-lnkbtn', { duration: dur, opacity: 1, transform: 'translateX(0px)' });
-        animStore.initTextAnimation('Связаться', (output) => lnkBtnTitle.value += output, { duration: 80 });
-    } catch (err) {
-        throw err;
-    }
-}
-
-// #######################################   WATCH   #######################################
-// Внутренние анимации выпоняются после того как заверится анимация появления главного компонента
-watch(() => animStore.animationExecuteState, (newValue) => {
-    if(newValue === false) {
-        initInnerAnimation(0.18, 0)
-    }
-});
-
-// #######################################   HOOKS   #######################################
-// onMounted(initAnimation);
+const { animationIds: { preview } } = mainTeamsStore;
+const previewId = preview[0];
 
 </script>
 
@@ -92,6 +70,7 @@ watch(() => animStore.animationExecuteState, (newValue) => {
     overflow: hidden;
     box-shadow: var(--base-shadow-1);
     cursor: default;
+    transition: left 0.3s;
 }
 .preview-block__fg {
     position: absolute;
@@ -138,5 +117,12 @@ watch(() => animStore.animationExecuteState, (newValue) => {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* MEDIA QUEIES */
+@media (max-width: 1280px) {
+    .preview-block {
+        left: 3rem;
+    }
 }
 </style>

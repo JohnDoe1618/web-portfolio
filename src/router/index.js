@@ -3,6 +3,7 @@ import ServicesView from '@/views/ServicesView.vue'
 import TeamView from '@/views/TeamView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import AboutUsView from '@/views/AboutUsView.vue'
+import EmployeeMainBlock from '@/components/teams/employeeMainBlock.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,9 +24,17 @@ const router = createRouter({
       component: ExperianceView
     },
     {
-      path: '/team',
+      path: '/team/',
       name: "our-team",
-      component: TeamView
+      component: TeamView,
+      redirect: { name: 'selectedEmployee', params: { id: 1 } },
+      children: [
+        {
+          path: ':id',
+          name: 'selectedEmployee',
+          component: EmployeeMainBlock,
+        },
+      ]
     }
   ]
 })
