@@ -22,11 +22,6 @@ export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
         timerId: null,
     })
 
-    function stopTimerById() {
-        console.log(lnkBtn.value.stoppedValue);
-        clearInterval(lnkBtn.value.timerId);
-    }
-
     const teams = ref([
         {
             id: 'jd2sf3',
@@ -148,6 +143,5 @@ export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
         previewImageSrc,
         currentWidget,
         debounceWatcher,
-        stopTimerById,
     }
 }) 

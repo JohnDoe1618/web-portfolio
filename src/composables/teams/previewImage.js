@@ -11,10 +11,6 @@ export function usePreviewImage(props) {
 
 
     // #######################################   METHODS   #######################################
-    // Сбрасывает основные данные компонента (например при именении роута)
-    function resetDataComponent() {
-        isLoadingImg.value = false;
-    }
 
     // Стартовая анимация вложенных элементов при начальной отрисовке компонента
     async function initInnerAnimation(duration=0.18, delay=0.4) {
@@ -40,8 +36,6 @@ export function usePreviewImage(props) {
             docEl.style.opacity = 0;
         });
     }
-
-
 
 
     return {

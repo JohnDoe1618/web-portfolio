@@ -33,8 +33,8 @@ const infoSectionId = infoSection[0];
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 1200px;
-    opacity: 1;
+    width: 50px;
+    opacity: 0.3;
     height: 68%;
     border: 1px solid var(--base-border-color);
     border-radius: var(--base-rounded);
@@ -42,19 +42,13 @@ const infoSectionId = infoSection[0];
     transition: width 0.3s;
 }
 #teams-preview-block {
-    /* scale: 0.4;
+    scale: 0.4;
     opacity: 0;
-    transform: translate(-350px, 0px); */
-    scale: 1;
-    opacity: 1;
-    transform: translate(0px, 0px);
+    transform: translate(-350px, 0px);
 }
 #teams-summary-block {
-    /* scale: 0.4;
+    scale: 0.4;
     opacity: 0;
-    transform: translate(350px, 0px); */
-    scale: 1;
-    opacity: 1;
-    transform: translate(0px, 0px);
+    transform: translate(350px, 0px);
 }
 </style>

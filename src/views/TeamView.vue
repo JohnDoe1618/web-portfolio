@@ -1,6 +1,5 @@
 <template>
     <div class="team-view">
-        <button class="fixed right-0 top-0 p-4" @click="stopTimerById">STOP</button>
         <buttonSlide 
         icon-direction="left"
         @click="() => chooseAnotherWidget({ direction: 'less' })"
@@ -22,6 +21,7 @@ import { onMounted, ref, watch } from 'vue';
 import { RouterView, useRoute } from 'vue-router';
 import { useTeamsComposable } from '@/composables/teams';
 import { useMainTeamsStore } from '@/stores/teams/mainStore';
+import useAnimationTeams from '@/composables/teams/animation';
 
 // #####################################  COMPOSABLES  ###################################
 const route = useRoute();
@@ -34,7 +34,8 @@ const teamsComposable = useTeamsComposable()
 
 // #####################################  METHODS  ###################################
 const { chooseAnotherWidget, initCurrentWidget, filledWidgetData } = teamsComposable;
-const { debounceWatcher, stopTimerById } = mainTeamsStore;
+const { debounceWatcher } = mainTeamsStore;
+const { showSection } = useAnimationTeams();
 
 // #####################################  WATCHERS  ###################################
 // Отслеживание изменения параметра маршрута id
@@ -54,18 +55,7 @@ onMounted(async () => {
     initCurrentWidget();
 
     // Анимация отображения виджета с уже полученными данными
-
-    // Провяление анимаций
-    // await showSection();
-
-    // // Ичезновение 
-    // setTimeout(async () => {
-    //     await executeAllTeamsAnimation([
-    //         { id: previewId.value, config: { delay: 0, duration: 0.4, scale: 0, opacity: 0, transform: { x: -350, y: 0 } } },
-    //         { id: summaryId.value, config: { delay: 0, duration: 0.4, scale: 0, opacity: 0, transform: { x: 350, y: 0 } } },
-    //     ])
-    //     await infoSectionAnim(infoSectionId.value, { delay: 0.2, duration: .4, isFade: true, width: 50, opacity: 0 });
-    // }, 3400)
+    showSection();
 
     // Адаптив
     // window.addEventListener('resize', debounce((e) => {

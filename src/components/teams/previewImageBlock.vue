@@ -57,8 +57,8 @@ const previewId = preview[0];
 /* ДЛЯ АНИМАЦИИ ЭЛЕМЕНТОВ */
 #tm-pr-name, #tm-pr-jobtitle, #tm-pr-lnkbtn {
     position: relative;
-    transform: translateX(0px);
-    opacity: 1;
+    transform: translateX(150px);
+    opacity: 0;
 }
 
 .preview-block {
