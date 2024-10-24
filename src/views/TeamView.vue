@@ -1,15 +1,16 @@
 <template>
     <div class="team-view">
+        <button class="fixed right-0 top-0 p-4" @click="stopTimerById">STOP</button>
         <buttonSlide 
         icon-direction="left"
-        @click="choosePrevWidget"
+        @click="() => chooseAnotherWidget({ direction: 'less' })"
         />
 
         <RouterView />
 
         <buttonSlide 
         icon-direction="right"
-        @click="chooseNextWidget"
+        @click="() => chooseAnotherWidget({ direction: 'greater' })"
         />
     </div>
 </template>
@@ -32,8 +33,8 @@ const teamsComposable = useTeamsComposable()
 
 
 // #####################################  METHODS  ###################################
-const { chooseNextWidget, choosePrevWidget, initCurrentWidget, filledWidgetData } = teamsComposable;
-const { debounceWatcher } = mainTeamsStore;
+const { chooseAnotherWidget, initCurrentWidget, filledWidgetData } = teamsComposable;
+const { debounceWatcher, stopTimerById } = mainTeamsStore;
 
 // #####################################  WATCHERS  ###################################
 // Отслеживание изменения параметра маршрута id
@@ -51,6 +52,8 @@ onMounted(async () => {
 
     // Инициализация номера текущего виджета
     initCurrentWidget();
+
+    // Анимация отображения виджета с уже полученными данными
 
     // Провяление анимаций
     // await showSection();

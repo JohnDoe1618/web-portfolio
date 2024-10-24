@@ -1,6 +1,6 @@
 <!-----------------------------------------------------------TEMPLATE----------------------------------------------------------------------------->
 <template>
-    <div class="preview-block">
+    <div :id="previewId" class="preview-block">
         <div class="preview-block__fg">
             <div class="title-block mt-auto mr-auto mb-6 px-6 mx-4">
                 <h2 id="tm-pr-name">{{ props.data?.fullname }}</h2>
@@ -22,7 +22,6 @@
 
 <script setup>
 import { defineProps, watch, onMounted } from 'vue';
-import { useAnimTeamsStore } from '@/stores/teams/animStore';
 import { useRoute } from 'vue-router';
 import { usePreviewImage } from '@/composables/teams/previewImage';
 import { useMainTeamsStore } from '@/stores/teams/mainStore';
@@ -37,40 +36,19 @@ const props = defineProps({
 });
 
 // #######################################   COMPOSABLES   #######################################
-const animStore = useAnimTeamsStore();
 const mainTeamsStore = useMainTeamsStore();
 const { 
     isLoadingImg,
     initInnerAnimation,
     setDefaultStylesInnerItems,
 } = usePreviewImage(props);
-
-
-// #######################################   COMPOSABLES   #######################################
 const route = useRoute();
 
 
-// #######################################   WATCH   #######################################
-// Внутренние анимации выпоняются после того как завершится анимация появления главного компонента
-// watch(() => animStore.animationExecuteState, (newValue) => {
-//     if(newValue === false) {
-//         setDefaultStylesInnerItems();
-//         initInnerAnimation(0.18, 0);
-//     }
-// });
+// #######################################   DATA   #######################################
+const { animationIds: { preview } } = mainTeamsStore;
+const previewId = preview[0];
 
-// Изменение виджета. Если виджет меняется, то у ранее открытого виджета сбрасываются данные и откатываются стили для повторного применения анимаций
-// watch(() => route.params['id'], async (newVal, oldVal) => {
-//     if(!!newVal && !!oldVal) {
-//         setDefaultStylesInnerItems();
-//         updatePreviewData();
-//     }
-// })
-
-// #######################################   HOOKS   #######################################
-onMounted(() => {
-    console.log(mainTeamsStore.previewImageSrc);
-});
 </script>
 
 <!----------------------------------------------------------STYLES------------------------------------------------------------------------>

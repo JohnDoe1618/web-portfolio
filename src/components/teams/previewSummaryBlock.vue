@@ -1,5 +1,5 @@
 <template>
-    <div class="summary-block ml-auto pr-5 mr-2 py-3">
+    <div :id="summaryId" class="summary-block ml-auto pr-5 mr-2 py-3">
         <!-- Заголовок "Обо мне" -->
         <h1 class="summary-block__title">Обо мне</h1>
 
@@ -49,7 +49,9 @@
 <script setup>
 import { defineProps, computed } from 'vue';
 import SvgIcon from '@jamescoyle/vue-icon';
+import { useMainTeamsStore } from '@/stores/teams/mainStore';
 
+// #######################################   PROPS   #######################################
 const props = defineProps({
     data: {
         type: Object,
@@ -57,6 +59,18 @@ const props = defineProps({
         default: null,
     }
 });
+
+
+// #######################################   COMPOSABLES   #######################################
+const mainTeamsStore = useMainTeamsStore();
+
+
+// #######################################   DATA   #######################################
+const { animationIds: { summary } } = mainTeamsStore;
+const summaryId = summary[0];
+
+
+// #######################################   COMPUTED   #######################################
 const tags = computed(() => {
     let localTags = [];
     if(props.data?.tags) localTags = [...props.data?.tags];

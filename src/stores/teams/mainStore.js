@@ -17,8 +17,15 @@ export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
     // Значение для применения анимация и отображения кнопки "Связаться"
     const lnkBtn = ref({
         example: 'Связаться',
-        value: 'Связаться',
+        stoppedValue: null,
+        value: '',
+        timerId: null,
     })
+
+    function stopTimerById() {
+        console.log(lnkBtn.value.stoppedValue);
+        clearInterval(lnkBtn.value.timerId);
+    }
 
     const teams = ref([
         {
@@ -141,5 +148,6 @@ export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
         previewImageSrc,
         currentWidget,
         debounceWatcher,
+        stopTimerById,
     }
 }) 

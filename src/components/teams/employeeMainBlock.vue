@@ -4,11 +4,9 @@
     :id="infoSectionId" 
     >
         <previewImageBlock 
-        :main-id="previewId"
         :data="mainTeamsStore.widgetData?.preview"
         />
         <previewSummaryBlock 
-        :main-id="summaryId"
         :data="mainTeamsStore.widgetData?.about"
         />
     </section>
@@ -17,21 +15,14 @@
 <script setup>
 import previewImageBlock from '@/components/teams/previewImageBlock.vue';
 import previewSummaryBlock from '@/components/teams/previewSummaryBlock.vue';
-import { useAnimTeamsStore } from '@/stores/teams/animStore';
 import { useMainTeamsStore } from '@/stores/teams/mainStore';
-import { onMounted, watch } from 'vue';
 
 // #####################################  COMPOSABLES  ###################################
-const animStore = useAnimTeamsStore();
 const mainTeamsStore = useMainTeamsStore();
 
-
-// #####################################  DATA  ###################################
-const { animationIds: { infoSection, preview, summary } } = animStore;
-const previewId = preview[0];
-const summaryId = summary[0];
+// ##############################   DATA   ##########################
+const { animationIds: { infoSection }} = mainTeamsStore;
 const infoSectionId = infoSection[0];
-
 </script>
 
 
