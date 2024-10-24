@@ -8,13 +8,13 @@
                 <Button 
                 id="tm-pr-lnkbtn"
                 class="contact-btn " 
-                :label="lnkBtnTitle" 
+                :label="mainTeamsStore.lnkBtn.value" 
                 outlined 
                 severity="secondary" 
                 />
             </div>
         </div>
-        <img v-if="!isLoadingImg" class="preview-block__image" :src="imageSrc" alt="Preview Image">
+        <img v-if="!isLoadingImg" class="preview-block__image" :src="mainTeamsStore.previewImageSrc" alt="Preview Image">
     </div>
 </template>
 
@@ -25,6 +25,7 @@ import { defineProps, watch, onMounted } from 'vue';
 import { useAnimTeamsStore } from '@/stores/teams/animStore';
 import { useRoute } from 'vue-router';
 import { usePreviewImage } from '@/composables/teams/previewImage';
+import { useMainTeamsStore } from '@/stores/teams/mainStore';
 
 // #######################################   PROPS   #######################################
 const props = defineProps({
@@ -37,13 +38,11 @@ const props = defineProps({
 
 // #######################################   COMPOSABLES   #######################################
 const animStore = useAnimTeamsStore();
+const mainTeamsStore = useMainTeamsStore();
 const { 
-    lnkBtnTitle,
-    imageSrc,
     isLoadingImg,
     initInnerAnimation,
     setDefaultStylesInnerItems,
-    updatePreviewData,
 } = usePreviewImage(props);
 
 
@@ -69,8 +68,8 @@ const route = useRoute();
 // })
 
 // #######################################   HOOKS   #######################################
-onMounted(async () => {
-    updatePreviewData();
+onMounted(() => {
+    console.log(mainTeamsStore.previewImageSrc);
 });
 </script>
 
@@ -80,8 +79,8 @@ onMounted(async () => {
 /* ДЛЯ АНИМАЦИИ ЭЛЕМЕНТОВ */
 #tm-pr-name, #tm-pr-jobtitle, #tm-pr-lnkbtn {
     position: relative;
-    transform: translateX(150px);
-    opacity: 0;
+    transform: translateX(0px);
+    opacity: 1;
 }
 
 .preview-block {

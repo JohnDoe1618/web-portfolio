@@ -32,13 +32,6 @@ const previewId = preview[0];
 const summaryId = summary[0];
 const infoSectionId = infoSection[0];
 
-watch(() => mainTeamsStore.widgetData, (data) => {
-    console.log('WATCH', data);
-});
-
-onMounted(() => {
-})
-
 </script>
 
 

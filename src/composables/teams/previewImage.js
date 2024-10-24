@@ -1,12 +1,9 @@
-import { images } from '@/assets/preview';
 import { ref, nextTick } from 'vue';
 import gsap from 'gsap';
 
 
 export function usePreviewImage(props) {
     // #######################################   DATA   #######################################
-    const lnkBtnTitle = ref('');
-    const imageSrc = ref('');
     const isLoadingImg = ref(false);
     const nameElId = ref('tm-pr-name');
     const jobtitleElId = ref('tm-pr-jobtitle');
@@ -16,15 +13,7 @@ export function usePreviewImage(props) {
     // #######################################   METHODS   #######################################
     // Сбрасывает основные данные компонента (например при именении роута)
     function resetDataComponent() {
-        lnkBtnTitle.value = '';
-        imageSrc.value = '';
         isLoadingImg.value = false;
-    }
-
-    // Применение анимации для кнопки "Связаться"
-    function animateLnkBtn() {
-        lnkBtnTitle.value = '';
-        animStore.initTextAnimation('Связаться', (output) => lnkBtnTitle.value += output, { duration: 80 });
     }
 
     // Стартовая анимация вложенных элементов при начальной отрисовке компонента
@@ -36,7 +25,6 @@ export function usePreviewImage(props) {
             await tl.to(`#${nameElId.value}`, { duration: dur, delay: del, opacity: 1, transform: 'translateX(0px)' });
             await tl.to(`#${jobtitleElId.value}`, { duration: dur, opacity: 1, transform: 'translateX(0px)' });
             await tl.to(`#${lnkbtnElId.value}`, { duration: dur, opacity: 1, transform: 'translateX(0px)' });
-            animateLnkBtn();
         } catch (err) {
             throw err;
         }
@@ -53,29 +41,12 @@ export function usePreviewImage(props) {
         });
     }
 
-    // Функция отрабатывает в момент обновления или первичной инициализации данных виджета
-    async function updatePreviewData() {
-        try {
-            resetDataComponent();
-            isLoadingImg.value = true;
-            await nextTick();
-            imageSrc.value = importImage(images[props.data?.image]);
-        } finally {
-            isLoadingImg.value = false;
-        }
-    }
 
-    // Импорт изображения и корректное создание его URl
-    function importImage(imageName) {
-        return new URL(`../../assets/preview/${imageName}`, import.meta.url).href;
-    }
+
 
     return {
-        lnkBtnTitle,
-        imageSrc,
         isLoadingImg,
         initInnerAnimation,
         setDefaultStylesInnerItems,
-        updatePreviewData,
     }
 }

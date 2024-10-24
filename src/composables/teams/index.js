@@ -2,6 +2,9 @@ import { useAnimTeamsStore } from '@/stores/teams/animStore';
 import { useMainTeamsStore } from '@/stores/teams/mainStore';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import useAnimationTeams from './animation';
+// import { images } from '@/assets/preview';
+
 
 export function useTeamsComposable() {
 
@@ -13,6 +16,7 @@ export function useTeamsComposable() {
         infoSectionAnim, 
     } = animStore;
     const mainTeamStore = useMainTeamsStore();
+    const animTeamsComposable = useAnimationTeams();
     const route = useRoute();
     const router = useRouter();
 
@@ -20,8 +24,6 @@ export function useTeamsComposable() {
     const previewId = preview[0];
     const summaryId = summary[0];
     const infoSectionId = infoSection[0];
-    const currentWidget = ref(1);
-
 
     // ##############################   METHODS   ###################################
     // Поиск данных виджета по его ID и заполнение объекта 
@@ -33,29 +35,54 @@ export function useTeamsComposable() {
         }
     }
 
-    // Выбрать предыдущий виджет
-    async function choosePrevWidget() {
-        if (currentWidget.value - 1 <= 0) {
-            return;
+    // Обновляет айдишник открытого виджета при отрисовке нового виджета
+    function updateCounterWidget({ direction }) {
+        if(direction === 'less') {
+            if (mainTeamStore.currentWidget - 1 <= 0) {
+                throw { type: 'nothing' };
+            }
+            mainTeamStore.currentWidget--;
         }
+        else if (direction === 'greater') {
+            if ( (mainTeamStore.currentWidget + 1) > mainTeamStore.teams.length ) {
+                throw { type: 'nothing' };
+            }
+            mainTeamStore.currentWidget++;
+        }
+    }
+
+    // Функция обрабатывает случай включения другого виджета (изменение текущего открытого виджета)
+    async function handlerChangeWidget() {
+        // 1
         // await hideSection();
-        currentWidget.value--;
-        await router.push({
-            name: "selectedEmployee",
-            params: { id: currentWidget.value },
-        });
+        // 2
+        // await router.push({
+        //     name: "selectedEmployee",
+        //     params: { id: mainTeamStore.currentWidget },
+        // });
+        // 3
         // await showSection();
+    }
+
+    // Выбрать предыдущий виджет
+    function choosePrevWidget() {
+        try {
+            updateCounterWidget({ direction: 'less' });
+            handlerChangeWidget();
+        } catch (err) {
+            if(err?.type === 'nothing') console.log('Всё нормально')
+        }
     }
 
     // Выбрать следующий виджет
     async function chooseNextWidget() {
-        if ( (currentWidget.value + 1) > mainTeamStore.teams.length ) {
-            return;
+        try {
+            updateCounterWidget({ direction: 'greater' });
+            handlerChangeWidget();
+        } catch (err) {
+            if(err?.type === 'nothing') console.log('Всё нормально')
         }
-        // await hideSection();
-        currentWidget.value++;
-        await router.push({ name: 'selectedEmployee', params: { id: currentWidget.value } })
-        // await showSection();
+ 
     }
 
     // Анимация отображает секцию и её внутрениие элементы
@@ -75,11 +102,11 @@ export function useTeamsComposable() {
             { id: previewId, config: { delay: 0, duration: 0.4, scale: 0, opacity: 0, transform: { x: -350, y: 0 } } },
             { id: summaryId, config: { delay: 0, duration: 0.4, scale: 0, opacity: 0, transform: { x: 350, y: 0 } } },
         ])
-        await infoSectionAnim(infoSectionId, { delay: 0.2, duration: .4, isFade: true, width: 50, opacity: 0 });
+        // await infoSectionAnim(infoSectionId, { delay: 0.2, duration: .4, isFade: true, width: 50, opacity: 0 });
     }
 
     function initCurrentWidget() {
-        currentWidget.value = +route.params['id'];
+        mainTeamStore.currentWidget = +route.params['id'];
     } 
 
     return {

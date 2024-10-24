@@ -1,8 +1,25 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref, reactive } from "vue";
 import { mdiRocketLaunchOutline, mdiCodeTags, mdiDatabaseOutline, mdiSecurity } from '@mdi/js';
+import { images } from '@/assets/preview';
 
 export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
+
+    const animationIds = reactive({
+        infoSection: ['teams-info-section'],      //  айдишник секции, которая оборачивает preview- и summary- блоки
+        preview: ['teams-preview-block', {          //  айдишник блока с Картинкой члена команды. Нужен для анимации появления/скрытия 
+            name: 'tm-pr-name',                         //  id для анимации имени на превью картинке
+            jobtitle: 'tm-pr-jobtitle',                 //  id для анимации должности
+            lnkbtn: 'tm-pr-lnkbtn',                     //  id для анимации кнопки "связаться"
+        }],
+        summary: ['teams-summary-block'],           //  айдишник блока с Описанием члена команды. Нужен для анимации появления/скрытия
+    });
+    // Значение для применения анимация и отображения кнопки "Связаться"
+    const lnkBtn = ref({
+        example: 'Связаться',
+        value: 'Связаться',
+    })
+
     const teams = ref([
         {
             id: 'jd2sf3',
@@ -96,7 +113,14 @@ export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
             }
         },
     ]);
+    const currentWidget = ref(1);
     const widgetData = ref(null);
+
+    // Отрисовывает Превью-картинку разраба
+    const previewImageSrc = computed(() => {
+        if(!widgetData.value) return null;
+        return new URL(`../../assets/preview/${images[widgetData.value?.preview?.image]}`, import.meta.url).href;
+    });
 
     // Actions
     function debounceWatcher(func=(newVal, oldVal) => {}, delay=200) {
@@ -110,8 +134,12 @@ export const useMainTeamsStore = defineStore('mainTeamsStore', () => {
     }
 
     return {
+        animationIds,
+        lnkBtn,
         teams,
         widgetData,
+        previewImageSrc,
+        currentWidget,
         debounceWatcher,
     }
 }) 
